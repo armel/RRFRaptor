@@ -20,7 +20,7 @@ sleep 1
 case "$1" in
     start)
         echo "Starting RRFScanner"
-        nohup python $PATH_SCRIPT --room INT --sleep 1  --debug False > $PATH_LOG/RRFScanner.log 2>&1 & echo $! > $PATH_PID/RRFScanner.pid
+        nohup python $PATH_SCRIPT --room INTERNATIONAL --sleep 1  --debug False > $PATH_LOG/RRFScanner.log 2>&1 & echo $! > $PATH_PID/RRFScanner.pid
         cp /opt/RRFScanner/sounds/desactive.wav /opt/RRFScanner/status.wav
         ;;
     stop) 
