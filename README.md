@@ -39,18 +39,18 @@ Le plus simple est de lancer le RRFScanner en CLI (ligne de commande). Toujours 
 
 Le RRFScanner basculera sur sa position initiale (par défaut le salon RRF). En l'absence d'activité, au bout de 5 minutes (par défaut), le RRFScanner va s'activer et commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons.
 
-## Paramétrages fins
+# Paramétrages fins
 
-### Changer les paramétrages par défaut
+## Changer les paramétrages par défaut
 
 Vous pouvez évidement éditer le fichier `/opt/RRFScanner/RRFScanner.sh` afin de changer le salon de départ et la durée de la temporisation. 
 
-### Ne pas prendre en compte certains salons
+## Ne pas prendre en compte certains salons
 
 Vous pouvez éditer le fichier `/opt/RRFScanner/settings.py` et editer la variable `valid_room` avec la liste des salons que vous voulez surveiller.
 
 
-### Activation et désactivation par commande DTMF
+## Activation et désactivation par commande DTMF
 
 Il est possible d'activer et de désactiver le RRFScanner par une simple commande DTMF.
 
