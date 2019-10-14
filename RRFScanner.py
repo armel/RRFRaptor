@@ -32,6 +32,7 @@ def main(argv):
         elif opt in ('--standby'):
             s.standby_room = arg
 
+    l.standby()
     s.current_room = s.standby_room
 
     if s.room[s.current_room]['last'] == '':
