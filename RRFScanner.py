@@ -13,13 +13,14 @@ import lib as l
 import getopt
 import sys
 import time
+import datetime
 import os
 
 def main(argv):
 
-    # Check and get arguments
+    # Check et capture des arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'sleep=', 'standby='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'sleep=', 'room=', 'debug='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -28,28 +29,39 @@ def main(argv):
             l.usage()
             sys.exit()
         elif opt in ('--sleep'):
-            s.sleep = int(arg)
-        elif opt in ('--standby'):
-            s.standby_room = arg
+            s.sleep = float(arg)
+        elif opt in ('--room'):
+            if arg in ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']:
+                s.current_room = arg
+        elif opt in ('--debug'):
+            if arg in ['True', 'true']:
+                s.debug = True
+            else:
+                s.debug = False
 
-    l.standby()
-    s.current_room = s.standby_room
+    # Initialisation
 
-    if s.room[s.current_room]['last'] == '':
-        s.room[s.current_room]['last'] = time.time()
+    l.qsy(s.current_room)
+    s.room[s.current_room]['last'] = time.time()
 
+    # Boucle principale
     while(True):
+        now = datetime.datetime.now()
+
         s1 = s.room[s.current_room]['last']
         s2 = time.time()
 
-        #print 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
-
-        if (s2 - s1) > s.sleep * 60:
-            #print 'Début du scan...'
+        if (s2 - s1) > s.sleep * 60:    # Si la limite de temporisation atteinte, on scan
             l.read_log()
             if s.room[s.current_room]['indicatif'] == '':
+                if s.debug is True:
+                    print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
                 l.qsy()
-        
+        else:                           # Sinon, on affiche éventuellement une trace
+            if s.debug is True:
+                print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
+
+        # On controle toutes les 2 secondes, c'est suffisant...
         time.sleep(2)
         sys.stdout.flush()
 

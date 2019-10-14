@@ -7,21 +7,15 @@ Learn more about RRF on https://f5nlg.wordpress.com
 73 & 88 de F4HWN Armel
 '''
 
-'''
-Si le nombre de déclemenets et supérieur ou égale à 4
-Sur une durée de 1 minute
-On ban pour 15 minutes
-'''
-
 # Version
 
 version = '1.0.1'
 
 # Variables par defaut
 
-sleep = 1                       # Durée en minutes avant QSY
-standby_room = 'TECHNIQUE'      # Salon de repos 
-current_room = 'TECHNIQUE'      # Salon de depart
+sleep = 5                       # Durée en minutes avant QSY
+debug = False                   # Mode debug
+current_room = 'RRF'            # Salon de depart
 
 room = {
     'RRF': {

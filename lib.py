@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-RRFSentinel
+RRFScanner
 Learn more about RRF on https://f5nlg.wordpress.com
 73 & 88 de F4HWN Armel
 '''
@@ -22,8 +22,9 @@ def usage():
     print
     print 'Parametrages:'
     print 
-    print '  --sleep            nombre      nombre de minutes avant scanning'
-    print '  --standby          salon       salon de repos'
+    print '  --sleep            nombre      Nombre de minutes avant scanning (5 minutes par défaut)'
+    print '  --room             string      Salon de démarrage [RRF (défaut), TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL ou FON]'
+    print '  --debug            booléen     Mode debug [True, False (défaut)]'
     print
     print '88 & 73 from F4HWN Armel'
 
@@ -58,29 +59,40 @@ def read_log():
                     s.room[data]['indicatif'] = tmp
                 else:
                     s.room[data]['indicatif'] = ''
+    else:
+        if s.debug is True:
+            print 'Failed to read...'
 
     return True
 
-def qsy():
-    for data in s.room:
-        if data != s.current_room:
-            if s.room[data]['indicatif'] != '':
-                s.current_room = data
-                s.room[s.current_room]['last'] = time.time()
-                cmd = '/etc/spotnik/restart.' + data[:3].lower()
-                now = datetime.datetime.now()
-                print now.strftime('%H:%M:%S'), cmd
-                os.system(cmd)
-                break
+# Gestion des QSY
+def qsy(new_room = ''):
+    cmd = ''
+    old_room = s.current_room
+    if new_room != '':
+        cmd = '/etc/spotnik/restart.' + new_room[:3].lower()
+    else:
+        for data in s.room:
+            if data != s.current_room:
+                if s.room[data]['indicatif'] != '':
+                    s.current_room = data
+                    s.room[s.current_room]['last'] = time.time()
+                    cmd = '/etc/spotnik/restart.' + data[:3].lower()
+                    break
 
-def standby():
-    cmd = '/etc/spotnik/restart.' + s.standby_room[:3].lower()
-    os.system(cmd)
+    if cmd != '':
+        now = datetime.datetime.now()
+        print now.strftime('%H:%M:%S'), '- Execute', cmd, '(', old_room, ' -> ', s.current_room, ')'
+        if s.debug is False:
+            os.system(cmd)
+            time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
+            cmd = '/usr/bin/pkill -f timersalon'
+            os.system(cmd)
 
     return True
 
-# Affichage ddebug
-def debug():
+# Trace debugage
+def trace():
 
     for data in s.room:
         print data, 
