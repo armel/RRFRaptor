@@ -8,6 +8,8 @@ PATH_PID='/tmp'
 pid=$?
 if [ $pid != 1 ]; then
 	set -- 'stop'
+else
+	set -- 'start'
 fi
 
 case "$1" in
