@@ -5,7 +5,7 @@ PATH_LOG='/tmp'
 PATH_PID='/tmp'
 
 # Si pas d'argument, on gere tout seul
-if [ -z "$1" ]
+if [ -z "$1" ]; then
 	/usr/bin/pgrep -f 'python /opt/RRFScanner/RRFScanner.py'
 	pid=$?
 	if [ $pid != 1 ]; then
