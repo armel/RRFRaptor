@@ -33,8 +33,6 @@ def main(argv):
             s.standby_room = arg
 
     s.current_room = s.standby_room
-    cmd = '/etc/spotnik/restart.' + s.current_room[:3].lower()
-    os.system(cmd)
 
     if s.room[s.current_room]['last'] == '':
         s.room[s.current_room]['last'] = time.time()

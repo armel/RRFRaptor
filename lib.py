@@ -73,6 +73,12 @@ def qsy():
                 os.system(cmd)
                 break
 
+def standby():
+    cmd = '/etc/spotnik/restart.' + s.standby_room[:3].lower()
+    os.system(cmd)
+
+    return True
+
 # Affichage ddebug
 def debug():
 
