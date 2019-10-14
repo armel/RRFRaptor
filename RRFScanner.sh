@@ -4,13 +4,15 @@ PATH_SCRIPT='/opt/RRFScanner/RRFScanner.py'
 PATH_LOG='/tmp'
 PATH_PID='/tmp'
 
-/usr/bin/pgrep -f 'python /opt/RRFScanner/RRFScanner.py'
-pid=$?
-if [ $pid != 1 ]; then
-	set -- 'stop'
-else
-	set -- 'start'
-fi
+# Si pas d'argument, on gere tout seul
+if [ -z "$1" ]
+	/usr/bin/pgrep -f 'python /opt/RRFScanner/RRFScanner.py'
+	pid=$?
+	if [ $pid != 1 ]; then
+		set -- 'stop'
+	else
+		set -- 'start'
+	fi
 
 case "$1" in
     start)
