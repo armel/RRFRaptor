@@ -7,7 +7,7 @@ PATH_PID='/tmp'
 /usr/bin/pgrep -f 'python /opt/RRFScanner/RRFScanner.py'
 pid=$?
 if [ $pid != 1 ]; then
-	$1 = 'stop'
+	set -- 'stop'
 fi
 
 case "$1" in
