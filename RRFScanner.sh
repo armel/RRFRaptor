@@ -10,8 +10,12 @@ if [ -z "$1" ]; then
 	pid=$?
 	if [ $pid != 1 ]; then
 		set -- 'stop'
+        rm /opt/RRFScanner/status.wav
+        ln -s /opt/RRFScanner/sounds/active.wav /opt/RRFScanner/status.wav
 	else
 		set -- 'start'
+        rm /opt/RRFScanner/status.wav
+        ln -s /opt/RRFScanner/sounds/desactive.wav /opt/RRFScanner/status.wav
 	fi
 fi
 
@@ -21,13 +25,9 @@ case "$1" in
     start)
         echo "Starting RRFScanner"
         nohup python $PATH_SCRIPT --room INTERNATIONAL --sleep 1  --debug False > $PATH_LOG/RRFScanner.log 2>&1 & echo $! > $PATH_PID/RRFScanner.pid
-        rm /opt/RRFScanner/status.wav
-        ln -s /opt/RRFScanner/sounds/desactive.wav /opt/RRFScanner/status.wav
         ;;
     stop) 
         echo "Stopping RRFScanner"
         kill `cat $PATH_PID/RRFScanner.pid`
-        rm /opt/RRFScanner/status.wav
-        ln -s /opt/RRFScanner/sounds/active.wav /opt/RRFScanner/status.wav
         ;;
     esac
