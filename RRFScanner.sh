@@ -7,7 +7,7 @@ PATH_PID='/tmp'
 case "$1" in
     start)
         echo "Starting RRFScanner"
-        nohup python $PATH_SCRIPT --salon TECHNIQUE --sleep 1  >> $PATH_LOG/RRFScanner.log 2>&1 & echo $! > $PATH_PID/RRFScanner.pid
+        nohup python $PATH_SCRIPT --standby TECHNIQUE --sleep 1  >> $PATH_LOG/RRFScanner.log 2>&1 & echo $! > $PATH_PID/RRFScanner.pid
         ;;
     stop) 
         echo "Stopping RRFScanner"
