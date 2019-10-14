@@ -10,22 +10,20 @@ if [ -z "$1" ]; then
 	pid=$?
 	if [ $pid != 1 ]; then
 		set -- 'stop'
+        cp /opt/RRFScanner/sounds/desactive.wav /opt/RRFScanner/status.wav
 	else
 		set -- 'start'
+        cp /opt/RRFScanner/sounds/active.wav /opt/RRFScanner/status.wav
 	fi
 fi
 
 case "$1" in
     start)
         echo "Starting RRFScanner"
-        rm /usr/share/svxlink/sounds/fr_FR/PropagationMonitor/name.wav
-        ln -s /opt/RRFScanner/sounds/active.wav /usr/share/svxlink/sounds/fr_FR/PropagationMonitor/name.wav
         nohup python $PATH_SCRIPT --room RRF --sleep 5  --debug False > $PATH_LOG/RRFScanner.log 2>&1 & echo $! > $PATH_PID/RRFScanner.pid
         ;;
     stop) 
         echo "Stopping RRFScanner"
-        rm /usr/share/svxlink/sounds/fr_FR/PropagationMonitor/name.wav
-        ln -s /opt/RRFScanner/sounds/desactive.wav /usr/share/svxlink/sounds/fr_FR/PropagationMonitor/name.wav
         kill `cat $PATH_PID/RRFScanner.pid`
         ;;
     esac
