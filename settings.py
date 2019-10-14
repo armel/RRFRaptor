@@ -17,6 +17,8 @@ sleep = 5                       # Durée en minutes avant QSY
 debug = False                   # Mode debug
 current_room = 'RRF'            # Salon de depart
 
+valid_room = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']
+
 room = {
     'RRF': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf.json',

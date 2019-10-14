@@ -53,7 +53,7 @@ def read_log():
             s.room[s.current_room]['last'] = time.time()
         
         for data in rrf_data['elsewhere'][1]:
-            if data in s.room:
+            if data in s.valid_room:
                 tmp = rrf_data['elsewhere'][1][data].encode('utf-8')
                 if tmp != 'Aucune émission':
                     s.room[data]['indicatif'] = tmp
@@ -72,7 +72,7 @@ def qsy(new_room = ''):
     if new_room != '':
         cmd = '/etc/spotnik/restart.' + new_room[:3].lower()
     else:
-        for data in s.room:
+        for data in s.valid_room:
             if data != s.current_room:
                 if s.room[data]['indicatif'] != '':
                     s.current_room = data

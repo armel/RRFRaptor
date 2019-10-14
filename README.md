@@ -32,4 +32,39 @@ Et voilà, c'est tout ;)
 
 ## Lancement du RRFScanner
 
-Todo
+Le plus simple est de lancer le RRFScanner en CLI (ligne de commande). Toujours depuis une connexion SSH, 
+
+- pour activer le RRFScanner `/opt/RRFScanner/RRFScanner.sh stop`
+- pour désactiver le RRFScanner `/opt/RRFScanner/RRFScanner.sh start`
+
+Le RRFScanner basculera sur sa position initiale (par défaut le salon RRF). En l'absence d'activité, au bout de 5 minutes (par défaut), le RRFScanner va s'activer et commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons.
+
+## Paramétrages fins
+
+### Changer les paramétrages par défaut
+
+Vous pouvez évidement éditer le fichier `/opt/RRFScanner/RRFScanner.sh` afin de changer le salon de départ et la durée de la temporisation. 
+
+### Ne pas prendre en compte certains salons
+
+Vous pouvez éditer le fichier `/opt/RRFScanner/settings.py` et editer la variable `valid_room` avec la liste des salons que vous voulez surveiller.
+
+
+### Activation et désactivation par commande DTMF
+
+Il est possible d'activer et de désactiver le RRFScanner par une simple commande DTMF.
+
+Pour cela, éditez le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`. Vers les lignes 600, vous trouverez des blocs de code concernant les commandes DTMF que vous connaissez déjà. Ajouter à la suite un nouveau bloc avec le code ci dessous:
+
+```
+  # 00 RRFScanner
+  if {$cmd == "00"} {
+    puts "Executing external command"
+    playMsg "Core" "online"
+    exec nohup /opt/RRFScanner/RRFScanner.sh &
+    return 1
+  }
+```
+
+Et voilà, le RRFScanner pour être activé ou désactivé en envoyant la commande DTMF `00`. Vous pouvez évidement choisir une autre commande.
+
