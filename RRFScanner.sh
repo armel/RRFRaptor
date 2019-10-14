@@ -9,11 +9,11 @@ if [ -z "$1" ]; then
 	/usr/bin/pgrep -f 'python /opt/RRFScanner/RRFScanner.py'
 	pid=$?
 	if [ $pid != 1 ]; then
-		set -- 'stop'
-        cp /opt/RRFScanner/sounds/desactive.wav /opt/RRFScanner/status.wav
-	else
-		set -- 'start'
         cp /opt/RRFScanner/sounds/active.wav /opt/RRFScanner/status.wav
+		set -- 'stop'
+	else
+        cp /opt/RRFScanner/sounds/desactive.wav /opt/RRFScanner/status.wav
+		set -- 'start'
 	fi
 fi
 
