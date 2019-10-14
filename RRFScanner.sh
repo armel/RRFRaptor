@@ -4,7 +4,7 @@ PATH_SCRIPT='/opt/RRFScanner/RRFScanner.py'
 PATH_LOG='/tmp'
 PATH_PID='/tmp'
 
-cmd = `/usr/bin/pgrep -f "python /opt/RRFScanner/RRFScanner.py"`
+cmd = "/usr/bin/pgrep -f 'python /opt/RRFScanner/RRFScanner.py'"
 
 echo $cmd
 
