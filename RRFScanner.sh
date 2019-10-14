@@ -4,9 +4,11 @@ PATH_SCRIPT='/opt/RRFScanner/RRFScanner.py'
 PATH_LOG='/tmp'
 PATH_PID='/tmp'
 
-cmd = "/usr/bin/pgrep -f 'python /opt/RRFScanner/RRFScanner.py'"
-
-echo $cmd
+/usr/bin/pgrep -f 'python /opt/RRFScanner/RRFScanner.py'
+pid=$?
+if [ $pid != 1 ]; then
+	$1 = 'stop'
+fi
 
 case "$1" in
     start)
