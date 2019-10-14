@@ -13,12 +13,13 @@ import lib as l
 import getopt
 import sys
 import time
+import os
 
 def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'sleep='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'sleep=', 'standby='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -28,6 +29,12 @@ def main(argv):
             sys.exit()
         elif opt in ('--sleep'):
             s.sleep = int(arg)
+        elif opt in ('--standby'):
+            s.standby_room = arg
+
+    s.current_room = s.standby_room
+    cmd = '/etc/spotnik/restart.' + s.current_room[:3].lower()
+    os.system(cmd)
 
     if s.room[s.current_room]['last'] == '':
         s.room[s.current_room]['last'] = time.time()

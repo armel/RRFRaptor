@@ -19,8 +19,9 @@ version = '1.0.1'
 
 # Variables par defaut
 
-sleep = 0.2               # Durée en minutes avant QSY
-current_room = 'LOCAL'    # Salon de départ 
+sleep = 1                       # Durée en minutes avant QSY
+standby_room = 'TECHNIQUE'      # Salon de repos 
+current_room = 'TECHNIQUE'      # Salon de depart
 
 room = {
     'RRF': {

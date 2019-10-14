@@ -11,6 +11,7 @@ import settings as s
 import requests
 import os
 import time
+import datetime
 import json
 
 # Usage
@@ -22,6 +23,7 @@ def usage():
     print 'Parametrages:'
     print 
     print '  --sleep            nombre      nombre de minutes avant scanning'
+    print '  --standby          salon       salon de repos'
     print
     print '88 & 73 from F4HWN Armel'
 
@@ -66,6 +68,8 @@ def qsy():
                 s.current_room = data
                 s.room[s.current_room]['last'] = time.time()
                 cmd = '/etc/spotnik/restart.' + data[:3].lower()
+                now = datetime.datetime.now()
+                print now.strftime('%H:%M:%S'), cmd
                 os.system(cmd)
                 break
 
