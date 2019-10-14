@@ -13,6 +13,7 @@ if [ -z "$1" ]
 	else
 		set -- 'start'
 	fi
+fi
 
 case "$1" in
     start)
