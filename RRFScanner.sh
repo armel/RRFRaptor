@@ -11,11 +11,11 @@ if [ -z "$1" ]; then
 	if [ $pid != 1 ]; then
 		set -- 'stop'
         rm /opt/RRFScanner/status.wav
-        ln -s /opt/RRFScanner/sounds/active.wav /opt/RRFScanner/status.wav
+        ln -s /opt/RRFScanner/sounds/desactive.wav /opt/RRFScanner/status.wav
 	else
 		set -- 'start'
         rm /opt/RRFScanner/status.wav
-        ln -s /opt/RRFScanner/sounds/desactive.wav /opt/RRFScanner/status.wav
+        ln -s /opt/RRFScanner/sounds/active.wav /opt/RRFScanner/status.wav
 	fi
 fi
 
