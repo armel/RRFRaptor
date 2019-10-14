@@ -57,10 +57,10 @@ Il est possible d'activer et de désactiver le RRFScanner par une simple command
 Pour cela, éditez le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`. Vers les lignes 600, vous trouverez des blocs de code concernant les commandes DTMF que vous connaissez déjà. Ajouter à la suite un nouveau bloc avec le code ci dessous:
 
 ```
-  # 00 RRFScanner
+  # 00
   if {$cmd == "00"} {
     puts "Executing external command"
-    playMsg "Core" "online"
+    playFile /opt/RRFScanner/status.wav
     exec nohup /opt/RRFScanner/RRFScanner.sh &
     return 1
   }
