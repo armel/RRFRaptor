@@ -15,6 +15,8 @@ if [ -z "$1" ]; then
 	fi
 fi
 
+sleep 1
+
 case "$1" in
     start)
         echo "Starting RRFScanner"
