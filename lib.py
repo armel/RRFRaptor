@@ -66,7 +66,7 @@ def qsy():
                 s.current_room = data
                 s.room[s.current_room]['last'] = time.time()
                 cmd = '/etc/spotnik/restart.' + data[:3].lower()
-                print cmd
+                os.system(cmd)
                 break
 
 # Affichage ddebug
