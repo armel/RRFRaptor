@@ -41,6 +41,8 @@ def main(argv):
     with open('/etc/spotnik/network', 'r') as content_file:
         content = content_file.read()
 
+    content = content.strip()
+    
     if content == 'int':
         s.current_room = 'INTERNATIONAL'
     elif content == 'bav':
