@@ -42,13 +42,15 @@ def main(argv):
         content = content_file.read()
 
     content = content.strip()
-    
+
     if content == 'int':
         s.current_room = 'INTERNATIONAL'
     elif content == 'bav':
         s.current_room = 'BAVARDAGE'
     elif content == 'loc':
         s.current_room = 'LOCAL'
+    elif content == 'tec':
+        s.current_room = 'TECHNIQUE'
     else:
         s.current_room = content.upper()
 
