@@ -22,7 +22,7 @@ def usage():
     print
     print 'Parametrages:'
     print 
-    print '  --sleep            nombre      Nombre de minutes avant scanning (5 minutes par défaut)'
+    print '  --sleep            nombre      Nombre de minutes avant scanning (3 minutes par défaut)'
     print '  --debug            booléen     Mode debug [True, False (défaut)]'
     print
     print '88 & 73 from F4HWN Armel'
