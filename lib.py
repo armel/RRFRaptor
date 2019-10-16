@@ -48,7 +48,7 @@ def read_log():
 
     if rrf_data != '': # Si le flux est valide
         # On récupère le TOT du salon en court
-        current_tot = rrf_data['abstract'][0]['TOT'].encode('utf-8')
+        current_tot = rrf_data['abstract'][0]['TOT']
         s.room[s.current_room]['tot'] = current_tot
 
         if current_tot != 0: # Si le TOT tourne encore
@@ -56,7 +56,7 @@ def read_log():
         else: # Sinon, on commence à regarder ailleurs
             for data in rrf_data['elsewhere'][6]:
                 if data in s.valid_room:
-                    tmp = rrf_data['elsewhere'][6][data].encode('utf-8')
+                    tmp = rrf_data['elsewhere'][6][data]
                     if tmp != 0:
                         s.room[data]['tot'] = tmp
                     else:
