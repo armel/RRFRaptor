@@ -20,7 +20,7 @@ def main(argv):
 
     # Check et capture des arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'sleep=', 'room=', 'debug='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'sleep=', 'debug='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -30,16 +30,29 @@ def main(argv):
             sys.exit()
         elif opt in ('--sleep'):
             s.sleep = float(arg)
-        elif opt in ('--room'):
-            if arg in ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']:
-                s.current_room = arg
         elif opt in ('--debug'):
             if arg in ['True', 'true']:
                 s.debug = True
             else:
                 s.debug = False
 
-    # Initialisation
+    # Lecture du salon en cours
+
+    with open('/etc/spotnik/network', 'r') as content_file:
+        content = content_file.read()
+
+    if content == 'int':
+        s.current_room = 'INTERNATIONAL'
+    elif content == 'bav':
+        s.current_room = 'BAVARDAGE'
+    elif content == 'loc':
+        s.current_room = 'LOCAL'
+    else:
+        s.current_room = content.upper()
+
+    print s.current_room
+
+    exit()
 
     l.qsy(s.current_room)
     s.room[s.current_room]['last'] = time.time()
