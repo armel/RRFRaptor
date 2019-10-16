@@ -17,7 +17,7 @@ sleep = 3                       # Durée en minutes avant QSY
 debug = False                   # Mode debug
 current_room = 'RRF'            # Salon de depart
 
-valid_room = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']
+valid_room = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
 
 room = {
     'RRF': {

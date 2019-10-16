@@ -54,11 +54,6 @@ def main(argv):
     else:
         s.current_room = content.upper()
 
-    print s.current_room
-
-    exit()
-
-    l.qsy(s.current_room)
     s.room[s.current_room]['last'] = time.time()
 
     # Boucle principale
