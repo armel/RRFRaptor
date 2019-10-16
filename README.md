@@ -37,7 +37,7 @@ Le plus simple est de lancer le RRFScanner en CLI (ligne de commande). Toujours 
 - pour activer le RRFScanner : `/opt/RRFScanner/RRFScanner.sh stop`
 - pour désactiver le RRFScanner : `/opt/RRFScanner/RRFScanner.sh start`
 
-Le RRFScanner basculera sur sa position initiale (par défaut le salon RRF). En l'absence d'activité, au bout de 5 minutes (par défaut), le RRFScanner va s'activer et commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons.
+Le RRFScanner basculera sur sa position initiale (par défaut le salon RRF). En l'absence d'activité, au bout de 3 minutes (par défaut), le RRFScanner va s'activer et commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons.
 
 # Paramétrages fins
 

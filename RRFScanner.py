@@ -36,7 +36,7 @@ def main(argv):
             else:
                 s.debug = False
 
-    # Lecture du salon en cours
+    # Lecture du salon courant
 
     with open('/etc/spotnik/network', 'r') as content_file:
         content = content_file.read()
@@ -53,6 +53,9 @@ def main(argv):
         s.current_room = 'TECHNIQUE'
     else:
         s.current_room = content.upper()
+
+    if s.current_room not in ['RRF', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'TECHNIQUE', 'FON']:
+        s.current_room = 'RRF'
 
     s.room[s.current_room]['last'] = time.time()
 
