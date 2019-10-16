@@ -54,10 +54,12 @@ def main(argv):
     else:
         s.current_room = content.upper()
 
+    # QSY sur le salon RRF si perdu...
     if s.current_room not in ['RRF', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'TECHNIQUE', 'FON']:
         s.current_room = 'RRF'
         l.qsy(s.current_room)
 
+    # Initialisation du timer
     s.room[s.current_room]['last'] = time.time()
 
     # Boucle principale
@@ -67,13 +69,13 @@ def main(argv):
         s1 = s.room[s.current_room]['last']
         s2 = time.time()
 
-        if (s2 - s1) > s.sleep * 60:    # Si la limite de temporisation atteinte, on scan
+        if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
             l.read_log()
-            if s.room[s.current_room]['indicatif'] == '':
+            if s.room[s.current_room]['tot'] == 0:
                 if s.debug is True:
                     print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
                 l.qsy()
-        else:                           # Sinon, on affiche éventuellement une trace
+        else: # Sinon, on affiche éventuellement une trace
             if s.debug is True:
                 print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
 
