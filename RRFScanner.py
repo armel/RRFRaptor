@@ -65,22 +65,21 @@ def main(argv):
     # Boucle principale
     while(True):
         now = datetime.datetime.now()
+        l.read_log()
 
         s1 = s.room[s.current_room]['last']
         s2 = time.time()
 
         if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
-            l.read_log()
-            if s.room[s.current_room]['tot'] == 0:
-                if s.debug is True:
-                    print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
-                l.qsy()
+            if s.debug is True:
+                print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
+            l.qsy()
         else: # Sinon, on affiche éventuellement une trace
             if s.debug is True:
                 print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
 
         # On controle toutes les 2 secondes, c'est suffisant...
-        time.sleep(2)
+        time.sleep(5)
         sys.stdout.flush()
 
 if __name__ == '__main__':

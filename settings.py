@@ -9,11 +9,11 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.0.3'
+version = '1.0.4'
 
 # Variables par defaut
 
-sleep = 3                       # Durée en minutes avant QSY
+sleep = 1                       # Durée en minutes avant QSY
 debug = False                   # Mode debug
 current_room = 'RRF'            # Salon de depart
 
