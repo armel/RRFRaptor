@@ -56,6 +56,7 @@ def main(argv):
 
     if s.current_room not in ['RRF', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'TECHNIQUE', 'FON']:
         s.current_room = 'RRF'
+        l.qsy(s.current_room)
 
     s.room[s.current_room]['last'] = time.time()
 
