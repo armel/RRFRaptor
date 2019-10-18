@@ -15,7 +15,7 @@ version = '1.0.5'
 
 sleep = 1                       # Durée en minutes avant QSY
 debug = False                   # Mode debug
-current_room = 'F4HWN'          # Salon courant
+current_room = ''               # Salon courant
 
 valid_room = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
 
