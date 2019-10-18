@@ -9,13 +9,13 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.0.4'
+version = '1.0.5'
 
 # Variables par defaut
 
 sleep = 1                       # Durée en minutes avant QSY
 debug = False                   # Mode debug
-current_room = 'RRF'            # Salon de depart
+current_room = ''               # Salon courant
 
 valid_room = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
 

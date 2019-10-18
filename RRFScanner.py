@@ -36,34 +36,12 @@ def main(argv):
             else:
                 s.debug = False
 
-    # Lecture du salon courant
-
-    with open('/etc/spotnik/network', 'r') as content_file:
-        content = content_file.read()
-
-    content = content.strip()
-
-    if content == 'int':
-        s.current_room = 'INTERNATIONAL'
-    elif content == 'bav':
-        s.current_room = 'BAVARDAGE'
-    elif content == 'loc':
-        s.current_room = 'LOCAL'
-    elif content == 'tec':
-        s.current_room = 'TECHNIQUE'
-    else:
-        s.current_room = content.upper()
-
-    # QSY sur le salon RRF si perdu...
-    if s.current_room not in ['RRF', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'TECHNIQUE', 'FON']:
-        s.current_room = 'RRF'
-        l.qsy(s.current_room)
-
-    # Initialisation du timer
-    s.room[s.current_room]['last'] = time.time()
-
     # Boucle principale
     while(True):
+        # Lecture du salon courant
+        l.where_is()
+
+        # Gestion de la temporisation
         now = datetime.datetime.now()
         l.read_log()
 

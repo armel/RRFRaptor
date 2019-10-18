@@ -95,6 +95,37 @@ def qsy(new_room = ''):
 
     return True
 
+# Detection salon
+def where_is():
+    detect_room = ''
+    with open('/etc/spotnik/network', 'r') as content_file:
+        content = content_file.read()
+    content = content.strip()
+
+    if content == 'int':
+        detect_room = 'INTERNATIONAL'
+    elif content == 'bav':
+        detect_room = 'BAVARDAGE'
+    elif content == 'loc':
+        detect_room = 'LOCAL'
+    elif content == 'tec':
+        detect_room = 'TECHNIQUE'
+    else:
+        detect_room = content.upper()
+
+    # QSY sur le salon RRF si perdu...
+    if detect_room not in ['RRF', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'TECHNIQUE', 'FON']:
+        detect_room = 'RRF'
+
+    # Si changement de salon...
+    if detect_room != s.current_room:
+        s.current_room = detect_room
+        l.qsy(s.current_room)
+        # Initialisation du timer
+        s.room[s.current_room]['last'] = time.time()
+        
+    return True
+
 # Trace debugage
 def trace():
     for data in s.room:
