@@ -118,6 +118,7 @@ def where_is():
         s.current_room = 'RRF'
         qsy(s.current_room)
         s.room[s.current_room]['last'] = time.time()
+        print 'ici', s.current_room
     elif detect_room != s.current_room: # Si changement de salon...
         s.current_room = detect_room
         s.room[s.current_room]['last'] = time.time()
