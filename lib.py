@@ -87,11 +87,10 @@ def qsy(new_room = ''):
     if cmd != '':
         now = datetime.datetime.now()
         print now.strftime('%H:%M:%S'), '- Execute', cmd, '(', old_room, ' -> ', s.current_room, ')'
-        if s.debug is False:
-            os.system(cmd)
-            time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
-            cmd = '/usr/bin/pkill -f timersalon'
-            os.system(cmd)
+        os.system(cmd)
+        time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
+        cmd = '/usr/bin/pkill -f timersalon'
+        os.system(cmd)
 
     return True
 
@@ -118,7 +117,6 @@ def where_is():
         s.current_room = 'RRF'
         qsy(s.current_room)
         s.room[s.current_room]['last'] = time.time()
-        print 'ici', s.current_room
     elif detect_room != s.current_room: # Si changement de salon...
         s.current_room = detect_room
         s.room[s.current_room]['last'] = time.time()
