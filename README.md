@@ -66,7 +66,7 @@ Pour cela, éditez le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`. Ver
   # 200
   if {$cmd == "200"} {
     puts "Executing external command"
-    playFile /opt/RRFScanner/status.wav
+    playFile /tmp/status.wav
     exec nohup /opt/RRFScanner/RRFScanner.sh &
     return 1
   }

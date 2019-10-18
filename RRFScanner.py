@@ -40,12 +40,13 @@ def main(argv):
     while(True):
         # Lecture du salon courant
         l.where_is()
+        now = datetime.datetime.now()
 
         if s.current_room != 'PARROT':  # Si pas sur le perroquet
-            # Gestion de la temporisation
-            now = datetime.datetime.now()
+            # Lecture de l'activité
             l.read_log()
 
+            # Gestion de la temporisation
             s1 = s.room[s.current_room]['last']
             s2 = time.time()
 
