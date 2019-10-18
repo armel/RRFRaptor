@@ -120,7 +120,7 @@ def where_is():
     # Si changement de salon...
     if detect_room != s.current_room:
         s.current_room = detect_room
-        l.qsy(s.current_room)
+        qsy(s.current_room)
         # Initialisation du timer
         s.room[s.current_room]['last'] = time.time()
         
