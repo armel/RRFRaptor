@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-RRFScanner
+RRFRaptor
 Learn more about RRF on https://f5nlg.wordpress.com
 73 & 88 de F4HWN Armel
 '''
