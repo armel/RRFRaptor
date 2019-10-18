@@ -19,6 +19,7 @@ def usage():
     print 'Usage: RRFSentinel.py [options ...]'
     print
     print '--help                           cet aide'
+    print '--version                        numéro de version'
     print
     print 'Parametrages:'
     print 
@@ -87,12 +88,44 @@ def qsy(new_room = ''):
     if cmd != '':
         now = datetime.datetime.now()
         print now.strftime('%H:%M:%S'), '- Execute', cmd, '(', old_room, ' -> ', s.current_room, ')'
-        if s.debug is False:
-            os.system(cmd)
-            time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
-            cmd = '/usr/bin/pkill -f timersalon'
-            os.system(cmd)
+        os.system(cmd)
+        time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
+        cmd = '/usr/bin/pkill -f timersalon'
+        os.system(cmd)
 
+    return True
+
+# Detection salon
+def where_is():
+    detect_room = ''
+    with open('/etc/spotnik/network', 'r') as content_file:
+        content = content_file.read()
+    content = content.strip()
+
+    if content == 'int':
+        detect_room = 'INTERNATIONAL'
+    elif content == 'bav':
+        detect_room = 'BAVARDAGE'
+    elif content == 'loc':
+        detect_room = 'LOCAL'
+    elif content == 'tec':
+        detect_room = 'TECHNIQUE'
+    elif content == 'default':
+        detect_room = 'PARROT'
+    else:
+        detect_room = content.upper()
+
+    # QSY sur le salon RRF si perdu...
+    if detect_room not in s.valid_room:
+        s.current_room = 'RRF'
+        qsy(s.current_room)
+        s.room[s.current_room]['last'] = time.time()
+    elif detect_room != s.current_room: # Si changement de salon...
+        now = datetime.datetime.now()
+        print now.strftime('%H:%M:%S'), '- QSY manuel', '(', s.current_room, ' -> ', detect_room, ')'
+        s.current_room = detect_room
+        s.room[s.current_room]['last'] = time.time()
+            
     return True
 
 # Trace debugage
