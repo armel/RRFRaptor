@@ -115,15 +115,13 @@ def where_is():
 
     # QSY sur le salon RRF si perdu...
     if detect_room not in ['RRF', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'TECHNIQUE', 'FON']:
-        detect_room = 'RRF'
-
-    # Si changement de salon...
-    if detect_room != s.current_room:
-        s.current_room = detect_room
+        s.current_room = 'RRF'
         qsy(s.current_room)
-        # Initialisation du timer
         s.room[s.current_room]['last'] = time.time()
-        
+    elif detect_room != s.current_room: # Si changement de salon...
+        s.current_room = detect_room
+        s.room[s.current_room]['last'] = time.time()
+            
     return True
 
 # Trace debugage
