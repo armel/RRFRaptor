@@ -20,13 +20,16 @@ def main(argv):
 
     # Check et capture des arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'sleep=', 'debug='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'version', 'sleep=', 'debug='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
     for opt, arg in options:
         if opt == '--help':
             l.usage()
+            sys.exit()
+        elif opt == '--version':
+            print s.version
             sys.exit()
         elif opt in ('--sleep'):
             s.sleep = float(arg)

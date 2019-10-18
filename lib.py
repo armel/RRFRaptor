@@ -19,6 +19,7 @@ def usage():
     print 'Usage: RRFSentinel.py [options ...]'
     print
     print '--help                           cet aide'
+    print '--version                        numéro de version'
     print
     print 'Parametrages:'
     print 
