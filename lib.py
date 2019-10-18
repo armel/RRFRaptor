@@ -109,11 +109,13 @@ def where_is():
         detect_room = 'LOCAL'
     elif content == 'tec':
         detect_room = 'TECHNIQUE'
+    elif content == 'default':
+        detect_room = 'PARROT'
     else:
         detect_room = content.upper()
 
     # QSY sur le salon RRF si perdu...
-    if detect_room not in ['RRF', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'TECHNIQUE', 'FON']:
+    if detect_room not in s.valid_room:
         s.current_room = 'RRF'
         qsy(s.current_room)
         s.room[s.current_room]['last'] = time.time()

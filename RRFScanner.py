@@ -41,20 +41,24 @@ def main(argv):
         # Lecture du salon courant
         l.where_is()
 
-        # Gestion de la temporisation
-        now = datetime.datetime.now()
-        l.read_log()
+        if s.current_room != 'PARROT':  # Si pas sur le perroquet
+            # Gestion de la temporisation
+            now = datetime.datetime.now()
+            l.read_log()
 
-        s1 = s.room[s.current_room]['last']
-        s2 = time.time()
+            s1 = s.room[s.current_room]['last']
+            s2 = time.time()
 
-        if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
+            if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
+                if s.debug is True:
+                    print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
+                l.qsy()
+            else: # Sinon, on affiche éventuellement une trace
+                if s.debug is True:
+                    print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
+        else: # Sinon on ne fait rien sur le perroquet
             if s.debug is True:
-                print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
-            l.qsy()
-        else: # Sinon, on affiche éventuellement une trace
-            if s.debug is True:
-                print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
+                print now.strftime('%H:%M:%S'), '-', 'Perroquet...'
 
         # On controle toutes les 2 secondes, c'est suffisant...
         time.sleep(5)

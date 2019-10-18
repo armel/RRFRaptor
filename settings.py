@@ -17,9 +17,14 @@ sleep = 1                       # Durée en minutes avant QSY
 debug = False                   # Mode debug
 current_room = ''               # Salon courant
 
-valid_room = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
+valid_room = ['PARROT', 'RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
 
 room = {
+    'PARROT': {
+        'url': '',
+        'tot': 0,
+        'last': ''
+    },
     'RRF': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf.json',
         'tot': 0,
