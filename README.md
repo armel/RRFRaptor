@@ -73,3 +73,5 @@ Pour cela, éditez le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`. Ver
 ```
 
 Et voilà, le RRFScanner peut être activé ou désactivé en envoyant la commande DTMF `200`. Vous pouvez évidement choisir une autre commande.
+
+Bon trafic à tous, 88 & 73 de Armel F4HWN !
