@@ -20,13 +20,16 @@ def main(argv):
 
     # Check et capture des arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'sleep=', 'debug='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'version', 'sleep=', 'debug='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
     for opt, arg in options:
         if opt == '--help':
             l.usage()
+            sys.exit()
+        elif opt == '--version':
+            print s.version
             sys.exit()
         elif opt in ('--sleep'):
             s.sleep = float(arg)
@@ -36,47 +39,30 @@ def main(argv):
             else:
                 s.debug = False
 
-    # Lecture du salon courant
-
-    with open('/etc/spotnik/network', 'r') as content_file:
-        content = content_file.read()
-
-    content = content.strip()
-
-    if content == 'int':
-        s.current_room = 'INTERNATIONAL'
-    elif content == 'bav':
-        s.current_room = 'BAVARDAGE'
-    elif content == 'loc':
-        s.current_room = 'LOCAL'
-    elif content == 'tec':
-        s.current_room = 'TECHNIQUE'
-    else:
-        s.current_room = content.upper()
-
-    # QSY sur le salon RRF si perdu...
-    if s.current_room not in ['RRF', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'TECHNIQUE', 'FON']:
-        s.current_room = 'RRF'
-        l.qsy(s.current_room)
-
-    # Initialisation du timer
-    s.room[s.current_room]['last'] = time.time()
-
     # Boucle principale
     while(True):
+        # Lecture du salon courant
+        l.where_is()
         now = datetime.datetime.now()
-        l.read_log()
 
-        s1 = s.room[s.current_room]['last']
-        s2 = time.time()
+        if s.current_room != 'PARROT':  # Si pas sur le perroquet
+            # Lecture de l'activité
+            l.read_log()
 
-        if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
+            # Gestion de la temporisation
+            s1 = s.room[s.current_room]['last']
+            s2 = time.time()
+
+            if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
+                if s.debug is True:
+                    print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
+                l.qsy()
+            else: # Sinon, on affiche éventuellement une trace
+                if s.debug is True:
+                    print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
+        else: # Sinon on ne fait rien sur le perroquet
             if s.debug is True:
-                print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
-            l.qsy()
-        else: # Sinon, on affiche éventuellement une trace
-            if s.debug is True:
-                print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
+                print now.strftime('%H:%M:%S'), '-', 'Perroquet...'
 
         # On controle toutes les 2 secondes, c'est suffisant...
         time.sleep(5)
