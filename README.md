@@ -6,7 +6,7 @@ Une fois le RRFRaptor lancé, tant qu'il y a de l'activité sur le salon sur leq
 
 Si l'activité retombe, au bout d'une certaine temporisation paramétrable, le RRFRaptor va s'activer et commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons.
 
-Si le trafic reprend entre temps sur le salon sur lequel vous étiez, évidement, la temporisation redémarre à zéro et le RRFRaptor retombe en sommeil.
+Si le trafic reprend entre temps sur le salon sur lequel vous étiez, évidemment, la temporisation redémarre à zéro et le RRFRaptor retombe en sommeil.
 
 Par contre, si le trafic ne reprend pas et que le RRFRaptor détecte de l'activité sur un autre salon, alors il va automatiquement faire basculer votre Spotnik sur celui ci.
 
@@ -47,9 +47,9 @@ Le RRFRaptor basculera sur sa position initiale (par défaut le salon RRF). En l
 
 ## Changer les paramétrages par défaut
 
-Vous pouvez évidement éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de changer le salon de départ (option `--room`) et la durée de la temporisation (option `--sleep`). 
+Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de changer le salon de départ (option `--room`) et la durée de la temporisation (option `--sleep`). 
 
-L'option `--debug` présente juste un intérêt en phase de dévelopement. Inutile de l'activer. 
+L'option `--debug` présente juste un intérêt en phase de développement. Inutile de l'activer. 
 
 ## Ne pas prendre en compte certains salons
 
@@ -72,6 +72,6 @@ Pour cela, éditez le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`. Ver
   }
 ```
 
-Et voilà, le RRFRaptor peut être activé ou désactivé en envoyant la commande DTMF `200`. Vous pouvez évidement choisir une autre commande.
+Et voilà, le RRFRaptor peut être activé ou désactivé en envoyant la commande DTMF `200`. Vous pouvez évidemment choisir une autre commande.
 
 Bon trafic à tous, 88 & 73 de Armel F4HWN !
