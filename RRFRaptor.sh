@@ -11,12 +11,16 @@ if [ -z "$1" ]; then
     if [ $pid != 1 ]; then
         set -- 'stop'
         if [ -e /tmp/status.wav ]
+        then
             rm /tmp/status.wav
+        fi
         ln -s /opt/RRFRaptor/sounds/desactive.wav /tmp/status.wav
     else
         set -- 'start'
         if [ -e /tmp/status.wav ]
+        then
             rm /tmp/status.wav
+        fi
         ln -s /opt/RRFRaptor/sounds/active.wav /tmp/status.wav
     fi
 fi
