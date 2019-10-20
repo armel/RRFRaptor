@@ -16,7 +16,7 @@ import json
 
 # Usage
 def usage():
-    print 'Usage: RRFSentinel.py [options ...]'
+    print 'Usage: RRFRaptor.py [options ...]'
     print
     print '--help                           cet aide'
     print '--version                        numéro de version'
