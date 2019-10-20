@@ -63,7 +63,7 @@ Si vous n'êtes pas familier avec les fichiers de paramétrages de `Svxlink`, il
 
 `cp /opt/RRFRaptor/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl`
 
-La première va faire une sauvegarde de votre fichier `Logic.tcl`, au cas ou. Et la seconde va copier le fichier `Logic.tcl` modifé afin de prendre en compte le RRFRaptor. 
+La première va faire une sauvegarde de votre fichier `Logic.tcl`, au cas ou. Et la seconde va copier le fichier `Logic.tcl` modifié afin de prendre en charge le RRFRaptor. 
 
 Sinon, vous pouvez éditer vous même le fichier avec votre éditeur préféré. Donc, dans le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`, vers les lignes 600, vous trouverez des blocs de code concernant les commandes DTMF que vous connaissez déjà. Ajouter à la suite un nouveau bloc avec le code ci dessous:
 
