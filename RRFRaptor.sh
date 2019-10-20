@@ -6,17 +6,19 @@ PATH_PID='/tmp'
 
 # Si pas d'argument, on gere tout seul
 if [ -z "$1" ]; then
-	/usr/bin/pgrep -f 'python /opt/RRFRaptor/RRFRaptor.py'
-	pid=$?
-	if [ $pid != 1 ]; then
-		set -- 'stop'
-        rm /tmp/status.wav
+    /usr/bin/pgrep -f 'python /opt/RRFRaptor/RRFRaptor.py'
+    pid=$?
+    if [ $pid != 1 ]; then
+        set -- 'stop'
+        if [ -e /tmp/status.wav ]
+            rm /tmp/status.wav
         ln -s /opt/RRFRaptor/sounds/desactive.wav /tmp/status.wav
-	else
-		set -- 'start'
-        rm /tmp/status.wav
+    else
+        set -- 'start'
+        if [ -e /tmp/status.wav ]
+            rm /tmp/status.wav
         ln -s /opt/RRFRaptor/sounds/active.wav /tmp/status.wav
-	fi
+    fi
 fi
 
 sleep 2
