@@ -14,7 +14,7 @@ Par contre, si le trafic ne reprend pas et que le RRFRaptor détecte de l'activi
 
 ## Installation du RRFRaptor
 
-En partant de la version 2 ou 3 de la distribution Spotnik, commencez par cloner ce projet dans le répertoire `/opt`. Donc, depuis une connexion SSH, lancez les commandes suivantes:
+En partant de la version 2 ou 3 de la distribution Spotnik, commencez par cloner ce projet dans le répertoire `/opt`. Donc, depuis une connexion SSH, lancez les commandes suivantes :
 
 `cd /opt`
 
@@ -43,7 +43,7 @@ Le RRFRaptor basculera sur sa position initiale (par défaut le salon RRF). En l
 
 ## Changer les paramétrages par défaut
 
-Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de changer le salon de départ (option `--room`) et la durée de la temporisation (option `--sleep`). 
+Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de changer la durée de la temporisation (option `--sleep`). 
 
 L'option `--debug` présente juste un intérêt en phase de développement. Inutile de l'activer. 
 
