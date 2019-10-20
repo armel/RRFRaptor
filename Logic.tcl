@@ -632,7 +632,7 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-# 104 Regional a creer
+# 104 Regional a creer
   if {$cmd == "104"} {
     puts "Executing external command"
     playMsg "Core" "online"
