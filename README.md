@@ -22,10 +22,6 @@ Puis,
 
 `git clone https://github.com/armel/RRFRaptor.git`
 
-> Remarque
-> 
-> Si vous utilisez déjà un écran sur votre Spotnik (projet Spotnik2HMI ou projet RRFTracker_Spotnik), l'étape qui suit n'est pas nécessaire. Vous pouvez donc procéder au lancement du RRFRaptor. Sinon, encore un petit effort ;)
-
 Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez les commandes suivantes:
 
 `sudo apt-get install python-pip`
