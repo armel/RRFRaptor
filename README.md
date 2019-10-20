@@ -22,7 +22,7 @@ Puis,
 
 `git clone https://github.com/armel/RRFRaptor.git`
 
-Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez les commandes suivantes:
+Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez les commandes suivantes :
 
 `sudo apt-get install python-pip`
 
@@ -56,7 +56,16 @@ Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la varia
 
 Il est possible d'activer et de désactiver le RRFRaptor par une simple commande DTMF.
 
-Pour cela, éditez le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`. Vers les lignes 600, vous trouverez des blocs de code concernant les commandes DTMF que vous connaissez déjà. Ajouter à la suite un nouveau bloc avec le code ci dessous:
+Si vous n'êtes pas familier avec les fichiers de paramétrages de `Svxlink`, il vous suffit de copier le fichier `Logic.tcl` que j'ai déjà modifié pour vous. Donc, depuis une connexion SSH, lancer les commandes suivantes :
+
+`mv /usr/share/svxlink/events.d/local/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl.bak`
+
+
+`cp /opt/RRFRaptor/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl`
+
+La première va faire une sauvegarde de votre fichier `Logic.tcl`, au cas ou. Et la seconde va copier le fichier `Logic.tcl` modifé afin de prendre en compte le RRFRaptor. 
+
+Sinon, vous pouvez éditer vous même le fichier avec votre éditeur préféré. Donc, dans le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`, vers les lignes 600, vous trouverez des blocs de code concernant les commandes DTMF que vous connaissez déjà. Ajouter à la suite un nouveau bloc avec le code ci dessous:
 
 ```
   # 200
