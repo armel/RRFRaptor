@@ -672,7 +672,20 @@ proc dtmf_cmd_received {cmd} {
         playFile /opt/RRFRaptor/sounds/qso_ko.wav        
       } else {
         playSilence 1500
-        playFile /opt/RRFRaptor/sounds/qso_ok.wav              
+        playFile /opt/RRFRaptor/sounds/qso_ok.wav
+        if {$RRFRaptor == "RRF"} {
+          playFile /etc/spotnik/Srrf.wav      
+        } elif {$RRFRaptor == "FON"} {
+          playFile /etc/spotnik/Sfon.wav    
+        } elif {$RRFRaptor == "TECHNIQUE"} {
+          playFile /etc/spotnik/Stec.wav    
+        } elif {$RRFRaptor == "INTERNATIONAL"} {
+          playFile /etc/spotnik/Sint.wav    
+        } elif {$RRFRaptor == "LOCAL"} {
+          playFile /etc/spotnik/Sloc.wav    
+        } elif {$RRFRaptor == "BAVARDAGE"} {
+          playFile /etc/spotnik/Sbav.wav    
+        }  
       }
     }
     return 1
