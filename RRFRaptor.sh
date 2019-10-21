@@ -18,7 +18,7 @@ fi
 case "$1" in
     scan)
         echo "Simple scan RRFRaptor"
-        nohup python $PATH_SCRIPT --scan True --debug False &
+        python $PATH_SCRIPT --scan True --debug False
         ;;
     start)
         echo "Starting RRFRaptor"
