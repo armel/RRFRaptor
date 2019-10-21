@@ -9,10 +9,8 @@ if [ -z "$1" ]; then
     /usr/bin/pgrep -f 'python /opt/RRFRaptor/RRFRaptor.py'
     pid=$?
     if [ $pid != 1 ]; then
-        echo 'set RRFRaptor "OFF"' > /tmp/RRFRaptor_status.tcl
         set -- 'stop'
     else
-        echo 'set RRFRaptor "ON"' > /tmp/RRFRaptor_status.tcl
         set -- 'start'
     fi
 fi
@@ -23,6 +21,7 @@ case "$1" in
         search="python ${PATH_SCRIPT}"
         pkill -f "${search}"
         nohup python $PATH_SCRIPT --sleep 1 --scan False --debug False > $PATH_LOG/RRFRaptor.log 2>&1 &
+        echo 'set RRFRaptor "ON"' > /tmp/RRFRaptor_status.tcl
         echo "202#"> /tmp/dtmf_uhf
         echo "202#"> /tmp/dtmf_vhf
         ;;
@@ -30,6 +29,7 @@ case "$1" in
         echo "Stopping RRFRaptor"
         search="python ${PATH_SCRIPT}"
         pkill -f "${search}"
+        echo 'set RRFRaptor "OFF"' > /tmp/RRFRaptor_status.tcl
         echo "202#"> /tmp/dtmf_uhf
         echo "202#"> /tmp/dtmf_vhf
         ;;
