@@ -35,4 +35,8 @@ case "$1" in
         echo "202#"> /tmp/dtmf_uhf
         echo "202#"> /tmp/dtmf_vhf
         ;;
+    version)
+        echo "Version RRFRaptor"
+        python $PATH_SCRIPT --version
+        ;;
     esac
