@@ -51,11 +51,11 @@ def main(argv):
                 data = l.scan()
 
                 print data
-                '''
+
                 file = open('/tmp/RRFRaptor.tmp', 'w')
                 file.write(l.scan)
                 file.close()
-                '''
+                
                 sys.exit()
 
     else: # Sinon, boucle principale
