@@ -20,7 +20,7 @@ case "$1" in
         echo "Starting RRFRaptor"
         search="python ${PATH_SCRIPT}"
         pkill -f "${search}"
-        nohup python $PATH_SCRIPT --sleep 1  --debug False > $PATH_LOG/RRFRaptor.log 2>&1
+        nohup python $PATH_SCRIPT --sleep 1  --debug False > $PATH_LOG/RRFRaptor.log 2>&1 &
         echo "201#"> /tmp/dtmf_uhf
         echo "201#"> /tmp/dtmf_vhf
         ;;
