@@ -647,8 +647,15 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-# 201 Raptor start sound
+# 201 Raptor quick scan
   if {$cmd == "201"} {
+    puts "Executing external command"
+    exec /opt/RRFRaptor/RRFRaptor.sh --scan
+    return 1
+  }
+
+# 201 Raptor start sound
+  if {$cmd == "202"} {
     puts "Executing external command"
     playSilence 1500
     playFile /opt/RRFRaptor/sounds/active.wav
@@ -656,15 +663,15 @@ proc dtmf_cmd_received {cmd} {
   }
 
 # 202 Raptor stop sound
-  if {$cmd == "202"} {
+  if {$cmd == "203"} {
     puts "Executing external command"
     playSilence 1500
     playFile /opt/RRFRaptor/sounds/desactive.wav
     return 1
   }
 
-# 203 Raptor quick scan
-  if {$cmd == "203"} {
+# 204 Raptor quick scan sound
+  if {$cmd == "204"} {
     if { [file exists /tmp/RRFRaptor.tcl] } {
       source "/tmp/RRFRaptor.tcl"
       if {$RRFRaptor == "None"} {

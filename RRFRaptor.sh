@@ -21,21 +21,21 @@ case "$1" in
         search="python ${PATH_SCRIPT}"
         pkill -f "${search}"
         nohup python $PATH_SCRIPT --sleep 1 --scan False --debug False > $PATH_LOG/RRFRaptor.log 2>&1 &
-        echo "201#"> /tmp/dtmf_uhf
-        echo "201#"> /tmp/dtmf_vhf
+        echo "202#"> /tmp/dtmf_uhf
+        echo "202#"> /tmp/dtmf_vhf
         ;;
     stop) 
         echo "Stopping RRFRaptor"
         search="python ${PATH_SCRIPT}"
         pkill -f "${search}"
-        echo "202#"> /tmp/dtmf_uhf
-        echo "202#"> /tmp/dtmf_vhf
+        echo "203#"> /tmp/dtmf_uhf
+        echo "203#"> /tmp/dtmf_vhf
         ;;
     scan)
         echo "Simple Scan RRFRaptor"
         python $PATH_SCRIPT --scan True --debug False
-        echo "203#"> /tmp/dtmf_uhf
-        echo "203#"> /tmp/dtmf_vhf
+        echo "204#"> /tmp/dtmf_uhf
+        echo "204#"> /tmp/dtmf_vhf
         ;;
     version)
         echo "Version RRFRaptor"
