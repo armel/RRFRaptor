@@ -45,9 +45,10 @@ def main(argv):
                 s.debug = False
 
     if s.scan is True: # Si scan simple
-        while(l.read_log()):
-            print s.room
-        sys.exit()
+        while(True):
+            if l.read_log() is True:
+                print s.room
+                sys.exit()
 
     else: # Sinon, boucle principale
         while(True):
