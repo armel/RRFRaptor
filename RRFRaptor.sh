@@ -19,14 +19,12 @@ case "$1" in
     start)
         echo "Starting RRFRaptor"
         nohup python $PATH_SCRIPT --sleep 1  --debug False > $PATH_LOG/RRFRaptor.log 2>&1 & echo $! > $PATH_PID/RRFRaptor.pid
-        sleep 1
         echo "201#"> /tmp/dtmf_uhf
         echo "201#"> /tmp/dtmf_vhf
         ;;
     stop) 
         echo "Stopping RRFRaptor"
         kill `cat $PATH_PID/RRFRaptor.pid`
-        sleep 1
         echo "202#"> /tmp/dtmf_uhf
         echo "202#"> /tmp/dtmf_vhf
         ;;
