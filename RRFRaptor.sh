@@ -17,7 +17,7 @@ fi
 
 case "$1" in
     scan)
-        echo "Simple scan RRFRaptor"
+        echo "Simple Scan RRFRaptor"
         python $PATH_SCRIPT --scan True --debug False
         ;;
     start)

@@ -663,6 +663,20 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
+# 203 Raptor quick scan
+  if {$cmd == "203"} {
+    if { [file exists /tmp/RRFRaptor.tcl] } {
+      source "/tmp/RRFRaptor.tcl"
+      if {$RRFRaptor == 'None'} {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/qso_ko.wav        
+      } else {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/qso_ok.wav              
+      }
+      return 1
+  }
+
 # 1000 Reboot
 
   if {$cmd == "1000"} {
@@ -681,10 +695,9 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-
-
   return 0
 }
+
 
 
 #
