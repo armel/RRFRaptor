@@ -66,7 +66,7 @@ def read_log():
     else: # Si le flux est invalide
         if s.debug is True:
             print 'Failed to read...'
-            return False
+        return False
 
     return True
 
