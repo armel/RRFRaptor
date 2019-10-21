@@ -650,7 +650,7 @@ proc dtmf_cmd_received {cmd} {
 # 201
   if {$cmd == "201"} {
     puts "Executing external command"
-    playSilence 500
+    playSilence 1000
     playFile /opt/RRFRaptor/sounds/active.wav
     return 1
   }
@@ -658,7 +658,7 @@ proc dtmf_cmd_received {cmd} {
 # 202
   if {$cmd == "202"} {
     puts "Executing external command"
-    playSilence 500
+    playSilence 1000
     playFile /opt/RRFRaptor/sounds/desactive.wav
     return 1
   }
