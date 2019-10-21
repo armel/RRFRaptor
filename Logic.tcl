@@ -672,7 +672,7 @@ proc dtmf_cmd_received {cmd} {
 
 # 204 Raptor quick scan sound
   if {$cmd == "204"} {
-    if { [file exists /tmp/RRFRaptor.tcl] } {
+    if { [file exists /tmp/RRFRaptor_scan.tcl] } {
       source "/tmp/RRFRaptor.tcl"
       if {$RRFRaptor == "None"} {
         playSilence 1500

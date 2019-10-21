@@ -9,8 +9,10 @@ if [ -z "$1" ]; then
     /usr/bin/pgrep -f 'python /opt/RRFRaptor/RRFRaptor.py'
     pid=$?
     if [ $pid != 1 ]; then
+        echo 'set RRFRaptor "OFF"' > /tmp/RRFRaptor_status.tcl
         set -- 'stop'
     else
+        echo 'set RRFRaptor "ON"' > /tmp/RRFRaptor_status.tcl
         set -- 'start'
     fi
 fi

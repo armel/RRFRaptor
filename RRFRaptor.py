@@ -48,7 +48,7 @@ def main(argv):
         l.where_is()
         while(True):
             if l.read_log() is True:
-                file = open('/tmp/RRFRaptor.tcl', 'w')
+                file = open('/tmp/RRFRaptor_scan.tcl', 'w')
                 file.write('set RRFRaptor "' + l.scan() + '"\n')
                 file.close()
                 sys.exit()
