@@ -675,15 +675,15 @@ proc dtmf_cmd_received {cmd} {
         playFile /opt/RRFRaptor/sounds/qso_ok.wav
         if {$RRFRaptor == "RRF"} {
           playFile /etc/spotnik/Srrf.wav      
-        } elif {$RRFRaptor == "FON"} {
+        } elseif {$RRFRaptor == "FON"} {
           playFile /etc/spotnik/Sfon.wav    
-        } elif {$RRFRaptor == "TECHNIQUE"} {
+        } elseif {$RRFRaptor == "TECHNIQUE"} {
           playFile /etc/spotnik/Stec.wav    
-        } elif {$RRFRaptor == "INTERNATIONAL"} {
+        } elseif {$RRFRaptor == "INTERNATIONAL"} {
           playFile /etc/spotnik/Sint.wav    
-        } elif {$RRFRaptor == "LOCAL"} {
+        } elseif {$RRFRaptor == "LOCAL"} {
           playFile /etc/spotnik/Sloc.wav    
-        } elif {$RRFRaptor == "BAVARDAGE"} {
+        } elseif {$RRFRaptor == "BAVARDAGE"} {
           playFile /etc/spotnik/Sbav.wav    
         }  
       }
