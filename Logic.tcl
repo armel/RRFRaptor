@@ -644,7 +644,20 @@ proc dtmf_cmd_received {cmd} {
   if {$cmd == "200"} {
     puts "Executing external command"
     exec nohup /opt/RRFRaptor/RRFRaptor.sh &
-    playFile /tmp/status.wav
+    return 1
+  }
+
+# 201
+  if {$cmd == "201"} {
+    puts "Executing external command"
+    playFile /opt/RRFRaptor/sound/active.wav
+    return 1
+  }
+
+# 202
+  if {$cmd == "202"} {
+    puts "Executing external command"
+    playFile /opt/RRFRaptor/sound/desactive.wav
     return 1
   }
 
