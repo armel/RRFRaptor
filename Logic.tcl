@@ -647,19 +647,53 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-# 201 Raptor start sound
+# 201 Raptor quick scan
   if {$cmd == "201"} {
     puts "Executing external command"
-    playSilence 1500
-    playFile /opt/RRFRaptor/sounds/active.wav
+    exec /opt/RRFRaptor/RRFRaptor.sh scan
     return 1
   }
 
-# 202 Raptor stop sound
+# 202 Raptor sound
   if {$cmd == "202"} {
-    puts "Executing external command"
-    playSilence 1500
-    playFile /opt/RRFRaptor/sounds/desactive.wav
+    if { [file exists /tmp/RRFRaptor_status.tcl] } {
+      source "/tmp/RRFRaptor_status.tcl"
+      if {$RRFRaptor == "ON"} {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/active.wav     
+      } else {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/desactive.wav
+      }
+    }
+    return 1
+  }
+
+# 203 Raptor quick scan sound
+  if {$cmd == "203"} {
+    if { [file exists /tmp/RRFRaptor_scan.tcl] } {
+      source "/tmp/RRFRaptor_scan.tcl"
+      if {$RRFRaptor == "None"} {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/qso_ko.wav        
+      } else {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/qso_ok.wav
+        if {$RRFRaptor == "RRF"} {
+          playFile /etc/spotnik/Srrf.wav      
+        } elseif {$RRFRaptor == "FON"} {
+          playFile /etc/spotnik/Sfon.wav    
+        } elseif {$RRFRaptor == "TECHNIQUE"} {
+          playFile /etc/spotnik/Stec.wav    
+        } elseif {$RRFRaptor == "INTERNATIONAL"} {
+          playFile /etc/spotnik/Sint.wav    
+        } elseif {$RRFRaptor == "LOCAL"} {
+          playFile /etc/spotnik/Sloc.wav    
+        } elseif {$RRFRaptor == "BAVARDAGE"} {
+          playFile /etc/spotnik/Sbav.wav    
+        }  
+      }
+    }
     return 1
   }
 
@@ -681,10 +715,9 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-
-
   return 0
 }
+
 
 
 #

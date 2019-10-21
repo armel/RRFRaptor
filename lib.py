@@ -24,6 +24,7 @@ def usage():
     print 'Parametrages:'
     print 
     print '  --sleep            nombre      Nombre de minutes avant scanning (3 minutes par défaut)'
+    print '  --scan             booléen     Mode scan [True, False (défaut)]'
     print '  --debug            booléen     Mode debug [True, False (défaut)]'
     print
     print '88 & 73 from F4HWN Armel'
@@ -65,6 +66,7 @@ def read_log():
     else: # Si le flux est invalide
         if s.debug is True:
             print 'Failed to read...'
+        return False
 
     return True
 
@@ -95,6 +97,14 @@ def qsy(new_room = ''):
 
     return True
 
+# Gestion du scan simple
+def scan():
+    for data in s.valid_room:
+        if s.room[data]['tot'] >= 3:
+            return data
+            break
+    return 'None'
+
 # Detection salon
 def where_is():
     detect_room = ''
@@ -121,8 +131,9 @@ def where_is():
         qsy(s.current_room)
         s.room[s.current_room]['last'] = time.time()
     elif detect_room != s.current_room: # Si changement de salon...
-        now = datetime.datetime.now()
-        print now.strftime('%H:%M:%S'), '- QSY manuel', '(', s.current_room, ' -> ', detect_room, ')'
+        if s.scan is False:
+            now = datetime.datetime.now()
+            print now.strftime('%H:%M:%S'), '- QSY manuel', '(', s.current_room, ' -> ', detect_room, ')'
         s.current_room = detect_room
         s.room[s.current_room]['last'] = time.time()
             

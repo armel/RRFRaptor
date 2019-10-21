@@ -9,11 +9,12 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.2.0'
+version = '1.3.0'
 
 # Variables par defaut
 
 sleep = 1                       # Durée en minutes avant QSY
+scan = False                    # Mode scan
 debug = False                   # Mode debug
 current_room = ''               # Salon courant
 
