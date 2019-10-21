@@ -14,6 +14,7 @@ version = '1.2.0'
 # Variables par defaut
 
 sleep = 1                       # Durée en minutes avant QSY
+scan = False                    # Mode scan
 debug = False                   # Mode debug
 current_room = ''               # Salon courant
 

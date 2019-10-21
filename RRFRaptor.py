@@ -20,7 +20,7 @@ def main(argv):
 
     # Check et capture des arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'version', 'sleep=', 'debug='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'version', 'sleep=', 'scan=', 'debug='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -33,40 +33,50 @@ def main(argv):
             sys.exit()
         elif opt in ('--sleep'):
             s.sleep = float(arg)
+        elif opt in ('--scan'):
+            if arg in ['True', 'true']:
+                s.debug = True
+            else:
+                s.debug = False
         elif opt in ('--debug'):
             if arg in ['True', 'true']:
                 s.debug = True
             else:
                 s.debug = False
 
-    # Boucle principale
-    while(True):
-        # Lecture du salon courant
-        l.where_is()
-        now = datetime.datetime.now()
+    if s.scan is True: # Si scan simple
+        while(l.read_log()):
+            print s.room
+        exit(0)
 
-        if s.current_room != 'PARROT':  # Si pas sur le perroquet
-            # Lecture de l'activité
-            l.read_log()
+    else: # Sinon, boucle principale
+        while(True):
+            # Lecture du salon courant
+            l.where_is()
+            now = datetime.datetime.now()
 
-            # Gestion de la temporisation
-            s1 = s.room[s.current_room]['last']
-            s2 = time.time()
+            if s.current_room != 'PARROT':  # Si pas sur le perroquet
+                # Lecture de l'activité
+                l.read_log()
 
-            if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
+                # Gestion de la temporisation
+                s1 = s.room[s.current_room]['last']
+                s2 = time.time()
+
+                if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
+                    if s.debug is True:
+                        print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
+                    l.qsy()
+                else: # Sinon, on affiche éventuellement une trace
+                    if s.debug is True:
+                        print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
+            else: # Sinon on ne fait rien sur le perroquet
                 if s.debug is True:
-                    print now.strftime('%H:%M:%S'), '-', 'Scan en cours...'
-                l.qsy()
-            else: # Sinon, on affiche éventuellement une trace
-                if s.debug is True:
-                    print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
-        else: # Sinon on ne fait rien sur le perroquet
-            if s.debug is True:
-                print now.strftime('%H:%M:%S'), '-', 'Perroquet...'
+                    print now.strftime('%H:%M:%S'), '-', 'Perroquet...'
 
-        # On controle toutes les 2 secondes, c'est suffisant...
-        time.sleep(5)
-        sys.stdout.flush()
+            # On controle toutes les 2 secondes, c'est suffisant...
+            time.sleep(5)
+            sys.stdout.flush()
 
 if __name__ == '__main__':
     try:

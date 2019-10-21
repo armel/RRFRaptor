@@ -24,6 +24,7 @@ def usage():
     print 'Parametrages:'
     print 
     print '  --sleep            nombre      Nombre de minutes avant scanning (3 minutes par défaut)'
+    print '  --scan             booléen     Mode scan [True, False (défaut)]'
     print '  --debug            booléen     Mode debug [True, False (défaut)]'
     print
     print '88 & 73 from F4HWN Armel'
@@ -65,6 +66,7 @@ def read_log():
     else: # Si le flux est invalide
         if s.debug is True:
             print 'Failed to read...'
+            return False
 
     return True
 
@@ -94,6 +96,15 @@ def qsy(new_room = ''):
         os.system(cmd)
 
     return True
+
+# Gestion du scan simple
+def scan():
+    for data in s.valid_room:
+        if data != s.current_room:
+            if s.room[data]['tot'] >= 3:
+                return data
+                break
+    return False
 
 # Detection salon
 def where_is():
