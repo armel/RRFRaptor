@@ -103,7 +103,7 @@ def scan():
         if s.room[data]['tot'] >= 3:
             return data
             break
-    return True
+    return False
 
 # Detection salon
 def where_is():
