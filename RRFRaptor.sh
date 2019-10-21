@@ -16,9 +16,6 @@ if [ -z "$1" ]; then
 fi
 
 case "$1" in
-    version)
-        nohup python $PATH_SCRIPT --version
-        ;;
     start)
         echo "Starting RRFRaptor"
         nohup python $PATH_SCRIPT --sleep 1  --debug False > $PATH_LOG/RRFRaptor.log 2>&1 & echo $! > $PATH_PID/RRFRaptor.pid
