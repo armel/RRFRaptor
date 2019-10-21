@@ -49,7 +49,7 @@ def main(argv):
         while(True):
             if l.read_log() is True:
                 file = open('/tmp/RRFRaptor.tmp', 'w')
-                file.write(l.scan())
+                file.write(l.scan() + '\n')
                 file.close()
 
                 sys.exit()
