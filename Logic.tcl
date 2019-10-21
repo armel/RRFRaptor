@@ -674,8 +674,8 @@ proc dtmf_cmd_received {cmd} {
         playSilence 1500
         playFile /opt/RRFRaptor/sounds/qso_ok.wav              
       }
-      return 1
     }
+    return 1
   }
 
 # 1000 Reboot
