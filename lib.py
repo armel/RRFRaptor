@@ -100,10 +100,9 @@ def qsy(new_room = ''):
 # Gestion du scan simple
 def scan():
     for data in s.valid_room:
-        if data != s.current_room:
-            if s.room[data]['tot'] >= 3:
-                return data
-                break
+        if s.room[data]['tot'] >= 3:
+            return data
+            break
     return False
 
 # Detection salon
