@@ -654,26 +654,25 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-# 202 Raptor start sound
+# 202 Raptor sound
   if {$cmd == "202"} {
-    puts "Executing external command"
-    playSilence 1500
-    playFile /opt/RRFRaptor/sounds/active.wav
+    if { [file exists /tmp/RRFRaptor_status.tcl] } {
+      source "/tmp/RRFRaptor_status.tcl"
+      if {$RRFRaptor == "ON"} {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/active.wav     
+      } else {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/desactive.wav
+      }
+    }
     return 1
   }
 
-# 203 Raptor stop sound
+# 203 Raptor quick scan sound
   if {$cmd == "203"} {
-    puts "Executing external command"
-    playSilence 1500
-    playFile /opt/RRFRaptor/sounds/desactive.wav
-    return 1
-  }
-
-# 204 Raptor quick scan sound
-  if {$cmd == "204"} {
     if { [file exists /tmp/RRFRaptor_scan.tcl] } {
-      source "/tmp/RRFRaptor.tcl"
+      source "/tmp/RRFRaptor_scan.tcl"
       if {$RRFRaptor == "None"} {
         playSilence 1500
         playFile /opt/RRFRaptor/sounds/qso_ko.wav        

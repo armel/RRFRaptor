@@ -30,14 +30,14 @@ case "$1" in
         echo "Stopping RRFRaptor"
         search="python ${PATH_SCRIPT}"
         pkill -f "${search}"
-        echo "203#"> /tmp/dtmf_uhf
-        echo "203#"> /tmp/dtmf_vhf
+        echo "202#"> /tmp/dtmf_uhf
+        echo "202#"> /tmp/dtmf_vhf
         ;;
     scan)
         echo "Simple Scan RRFRaptor"
         python $PATH_SCRIPT --scan True --debug False
-        echo "204#"> /tmp/dtmf_uhf
-        echo "204#"> /tmp/dtmf_vhf
+        echo "203#"> /tmp/dtmf_uhf
+        echo "203#"> /tmp/dtmf_vhf
         ;;
     version)
         echo "Version RRFRaptor"
