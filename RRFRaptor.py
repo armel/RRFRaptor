@@ -35,9 +35,9 @@ def main(argv):
             s.sleep = float(arg)
         elif opt in ('--scan'):
             if arg in ['True', 'true']:
-                s.debug = True
+                s.scan = True
             else:
-                s.debug = False
+                s.scan = False
         elif opt in ('--debug'):
             if arg in ['True', 'true']:
                 s.debug = True
