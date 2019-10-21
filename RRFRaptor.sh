@@ -17,7 +17,7 @@ fi
 
 case "$1" in
     version)
-        python $PATH_SCRIPT --version
+        nohup python $PATH_SCRIPT --version
         ;;
     start)
         echo "Starting RRFRaptor"
