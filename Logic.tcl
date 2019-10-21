@@ -667,7 +667,7 @@ proc dtmf_cmd_received {cmd} {
   if {$cmd == "203"} {
     if { [file exists /tmp/RRFRaptor.tcl] } {
       source "/tmp/RRFRaptor.tcl"
-      if {$RRFRaptor == 'None'} {
+      if {$RRFRaptor == "None"} {
         playSilence 1500
         playFile /opt/RRFRaptor/sounds/qso_ko.wav        
       } else {
