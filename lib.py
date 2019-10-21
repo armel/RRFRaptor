@@ -132,8 +132,9 @@ def where_is():
         qsy(s.current_room)
         s.room[s.current_room]['last'] = time.time()
     elif detect_room != s.current_room: # Si changement de salon...
-        now = datetime.datetime.now()
-        print now.strftime('%H:%M:%S'), '- QSY manuel', '(', s.current_room, ' -> ', detect_room, ')'
+        if s.scan is False:
+            now = datetime.datetime.now()
+            print now.strftime('%H:%M:%S'), '- QSY manuel', '(', s.current_room, ' -> ', detect_room, ')'
         s.current_room = detect_room
         s.room[s.current_room]['last'] = time.time()
             
