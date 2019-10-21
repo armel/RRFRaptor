@@ -71,8 +71,8 @@ Sinon, vous pouvez éditer vous même le fichier avec votre éditeur préféré.
   # 200
   if {$cmd == "200"} {
     puts "Executing external command"
-    playFile /tmp/status.wav
     exec nohup /opt/RRFRaptor/RRFRaptor.sh &
+    playFile /tmp/status.wav
     return 1
   }
 ```
