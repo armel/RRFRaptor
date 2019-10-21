@@ -46,6 +46,7 @@ def main(argv):
 
     if s.scan is True: # Si scan simple
         while(True):
+            l.where_is()
             if l.read_log() is True:
                 print s.room
                 sys.exit()
