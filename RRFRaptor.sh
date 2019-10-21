@@ -16,11 +16,15 @@ if [ -z "$1" ]; then
 fi
 
 case "$1" in
+    scan)
+        echo "Simple scan RRFRaptor"
+        nohup python $PATH_SCRIPT --scan True --debug False > $PATH_LOG/RRFRaptor.log 2>&1 &
+        ;;
     start)
         echo "Starting RRFRaptor"
         search="python ${PATH_SCRIPT}"
         pkill -f "${search}"
-        nohup python $PATH_SCRIPT --sleep 1  --debug False > $PATH_LOG/RRFRaptor.log 2>&1 &
+        nohup python $PATH_SCRIPT --sleep 1 --scan False --debug False > $PATH_LOG/RRFRaptor.log 2>&1 &
         echo "201#"> /tmp/dtmf_uhf
         echo "201#"> /tmp/dtmf_vhf
         ;;
