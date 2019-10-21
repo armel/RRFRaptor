@@ -650,11 +650,11 @@ proc dtmf_cmd_received {cmd} {
 # 201 Raptor quick scan
   if {$cmd == "201"} {
     puts "Executing external command"
-    exec /opt/RRFRaptor/RRFRaptor.sh --scan
+    exec nohup /opt/RRFRaptor/RRFRaptor.sh --scan &
     return 1
   }
 
-# 201 Raptor start sound
+# 202 Raptor start sound
   if {$cmd == "202"} {
     puts "Executing external command"
     playSilence 1500
@@ -662,7 +662,7 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-# 202 Raptor stop sound
+# 203 Raptor stop sound
   if {$cmd == "203"} {
     puts "Executing external command"
     playSilence 1500
