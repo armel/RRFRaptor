@@ -16,10 +16,6 @@ if [ -z "$1" ]; then
 fi
 
 case "$1" in
-    scan)
-        echo "Simple Scan RRFRaptor"
-        python $PATH_SCRIPT --scan True --debug False
-        ;;
     start)
         echo "Starting RRFRaptor"
         search="python ${PATH_SCRIPT}"
@@ -34,6 +30,12 @@ case "$1" in
         pkill -f "${search}"
         echo "202#"> /tmp/dtmf_uhf
         echo "202#"> /tmp/dtmf_vhf
+        ;;
+    scan)
+        echo "Simple Scan RRFRaptor"
+        python $PATH_SCRIPT --scan True --debug False
+        echo "203#"> /tmp/dtmf_uhf
+        echo "203#"> /tmp/dtmf_vhf
         ;;
     version)
         echo "Version RRFRaptor"
