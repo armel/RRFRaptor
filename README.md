@@ -108,13 +108,19 @@ Depuis votre connexion SSH, lancez les commandes suivantes :
 
 `cd /opt/RRFRaptor`
 
-Puis, 
-
 `git pull`
 
-## Modifier le code DTMF par défaut
+`mv /usr/share/svxlink/events.d/local/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl.bak`
 
-Si vous le souhaitez, vous pouvez modifier le code DTMF par défaut et l'adapter suivant vos besoins. Pour se faire, éditer le fichier `/usr/share/svxlink/events.d/local/Logic.tcl` à l'aide de votre éditeur préféré. Recherchez les blocs concernant les codes DTMF (vers les lignes 600...). Ajoutez et modifiez les 4 nouveaux blocs ci dessous en les adaptant à votre convenance :
+`cp /opt/RRFRaptor/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl`
+
+`/etc/spotnik/restart`
+
+Et voilà, votre version est à jour.
+
+## Modifier les codes DTMF par défaut
+
+Si vous le souhaitez, vous pouvez modifier les codes DTMF par défaut et les adapter suivant vos besoins. Pour se faire, éditer le fichier `/usr/share/svxlink/events.d/local/Logic.tcl` à l'aide de votre éditeur préféré. Recherchez les blocs concernant les codes DTMF (vers les lignes 600...). Ajoutez et / ou modifiez les 4 nouveaux blocs ci dessous en les adaptant à votre convenance :
 
 ```
 # 200 Raptor start and stop
