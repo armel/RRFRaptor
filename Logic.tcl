@@ -675,6 +675,7 @@ proc dtmf_cmd_received {cmd} {
         playFile /opt/RRFRaptor/sounds/qso_ok.wav              
       }
       return 1
+    }
   }
 
 # 1000 Reboot
