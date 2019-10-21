@@ -64,12 +64,22 @@ Le plus simple est de lancer le RRFRaptor en CLI (ligne de commande). Toujours d
 - pour activer le RRFRaptor : `/opt/RRFRaptor/RRFRaptor.sh start`
 - pour désactiver le RRFRaptor : `/opt/RRFRaptor/RRFRaptor.sh stop`
 
-Sinon, vous pouvez également activer ou désactiver le RRFRaptor à l'aide du DTMF __200__.
+Sinon, vous pouvez également activer ou désactiver le RRFRaptor à l'aide du code DTMF __200__. 
 
-Dans tous les cas, une annonce vocale vous informera de l'activation ou de la désactivation du RRFRaptor.
+Dans tous les cas, une annonce vocale vous informera de l'activation ou de la désactivation du RRFRaptor. 
 
 Une fois activé, en l'absence d'activité durant 1 minute (par défaut), le RRFRaptor va commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons et gérer lui même les QSY.
- 
+
+## Mode scan rapide
+
+Le RRFRaptor dispose également d'une fonctionnalité de _scan rapide_. Cela permet de savoir si un QSO est en cours sur un salon, via une annonce vocale. __Il n'est pas nécessaire que le RRFRaptor soit activé pour que cette fonctionnalité soit utilisable__. On peut donc lancer un _scan rapide_ à tous moments.
+
+En CLI (ligne de commande), depuis une connexion SSH, lancez la commande suivante :
+
+ `/opt/RRFRaptor/RRFRaptor.sh scan`
+
+Sinon, vous pouvez également utiliser le code DTMF __201__.
+
 
 # Paramétrages fins
 
@@ -104,7 +114,7 @@ Puis,
 
 ## Modifier le code DTMF par défaut
 
-Si vous le souhaitez, vous pouvez modifier le code DTMF par défaut et l'adapter suivant vos besoins. Pour se faire, éditer le fichier `/usr/share/svxlink/events.d/local/Logic.tcl` à l'aide de votre éditeur préféré. Recherchez les blocs concernant les codes DTMF (vers les lignes 600...). Ajoutez et modifiez les 3 nouveaux blocs ci dessous en les adaptant à votre convenance :
+Si vous le souhaitez, vous pouvez modifier le code DTMF par défaut et l'adapter suivant vos besoins. Pour se faire, éditer le fichier `/usr/share/svxlink/events.d/local/Logic.tcl` à l'aide de votre éditeur préféré. Recherchez les blocs concernant les codes DTMF (vers les lignes 600...). Ajoutez et modifiez les 4 nouveaux blocs ci dessous en les adaptant à votre convenance :
 
 ```
 # 200 Raptor start and stop
@@ -114,24 +124,58 @@ Si vous le souhaitez, vous pouvez modifier le code DTMF par défaut et l'adapter
     return 1
   }
 
-# 201 Raptor start sound
+# 201 Raptor quick scan
   if {$cmd == "201"} {
     puts "Executing external command"
-    playSilence 1500
-    playFile /opt/RRFRaptor/sounds/active.wav
+    exec /opt/RRFRaptor/RRFRaptor.sh scan
     return 1
   }
 
-# 202 Raptor stop sound
+# 202 Raptor sound
   if {$cmd == "202"} {
-    puts "Executing external command"
-    playSilence 1500
-    playFile /opt/RRFRaptor/sounds/desactive.wav
+    if { [file exists /tmp/RRFRaptor_status.tcl] } {
+      source "/tmp/RRFRaptor_status.tcl"
+      if {$RRFRaptor == "ON"} {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/active.wav     
+      } else {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/desactive.wav
+      }
+    }
+    return 1
+  }
+
+# 203 Raptor quick scan sound
+  if {$cmd == "203"} {
+    if { [file exists /tmp/RRFRaptor_scan.tcl] } {
+      source "/tmp/RRFRaptor_scan.tcl"
+      if {$RRFRaptor == "None"} {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/qso_ko.wav        
+      } else {
+        playSilence 1500
+        playFile /opt/RRFRaptor/sounds/qso_ok.wav
+        if {$RRFRaptor == "RRF"} {
+          playFile /etc/spotnik/Srrf.wav      
+        } elseif {$RRFRaptor == "FON"} {
+          playFile /etc/spotnik/Sfon.wav    
+        } elseif {$RRFRaptor == "TECHNIQUE"} {
+          playFile /etc/spotnik/Stec.wav    
+        } elseif {$RRFRaptor == "INTERNATIONAL"} {
+          playFile /etc/spotnik/Sint.wav    
+        } elseif {$RRFRaptor == "LOCAL"} {
+          playFile /etc/spotnik/Sloc.wav    
+        } elseif {$RRFRaptor == "BAVARDAGE"} {
+          playFile /etc/spotnik/Sbav.wav    
+        }  
+      }
+    }
     return 1
   }
 ```
 
->Attention, si vous modifiez également les codes __201__ et __202__ qui servent aux annonces vocales, vous devrez les modifiez également dans le script `/opt/RRFRaptor/RRFRaptor.sh`. Ce changement n'est pas recommandé.
+>Attention, si vous modifiez également les codes __202__ et __203__ qui servent aux annonces vocales, vous devrez les modifiez également dans le script `/opt/RRFRaptor/RRFRaptor.sh`. Ce changement n'est pas recommandé.
 
 # That's all
 
