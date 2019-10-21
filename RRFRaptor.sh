@@ -18,6 +18,7 @@ fi
 case "$1" in
     start)
         echo "Starting RRFRaptor"
+        pkill -f 'python $PATH_SCRIPT'
         nohup python $PATH_SCRIPT --sleep 1  --debug False > $PATH_LOG/RRFRaptor.log 2>&1 & echo $! > $PATH_PID/RRFRaptor.pid
         echo "201#"> /tmp/dtmf_uhf
         echo "201#"> /tmp/dtmf_vhf
