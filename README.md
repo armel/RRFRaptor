@@ -14,7 +14,11 @@ Par contre, si le trafic ne reprend pas et que le RRFRaptor détecte de l'activi
 
 ## Installation du RRFRaptor
 
-En partant de la version 2 ou 3 de la distribution Spotnik, commencez par cloner ce projet dans le répertoire `/opt`. Donc, depuis une connexion SSH, lancez les commandes suivantes :
+Commencez par ouvrir une connexion SSH sur votre Spotnik.
+
+### Etape 1 - Récupération du code
+
+Depuis votre connexion SSH, lancez les commandes suivantes :
 
 `cd /opt`
 
@@ -22,13 +26,36 @@ Puis,
 
 `git clone https://github.com/armel/RRFRaptor.git`
 
-Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez les commandes suivantes :
+### Etape 2 - Installation des dépendances
+
+Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Rassurez-vous, ce sera rapide. Toujours depuis votre connexion SSH, lancez les commandes suivantes :
 
 `sudo apt-get install python-pip`
 
 `sudo pip install requests`
 
-Et voilà, c'est tout ;)
+### Etape 3 - Ajout des codes DTMF
+
+Il est possible d'activer et de désactiver le RRFRaptor par un simple code DTMF.
+
+Si vous n'êtes pas familier avec les fichiers de paramétrages de __SvxLink__, il vous suffit de copier le fichier `Logic.tcl` que j'ai déjà modifié pour vous. Donc, depuis votre connexion SSH, lancer les commandes suivantes :
+
+`mv /usr/share/svxlink/events.d/local/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl.bak`
+
+
+`cp /opt/RRFRaptor/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl`
+
+La première va faire une sauvegarde de votre fichier `Logic.tcl` (renommé en `Logic.tcl.bak` au cas ou). Et la seconde va copier le fichier `Logic.tcl` modifié afin de prendre en charge le RRFRaptor. 
+
+Le RRFRaptor pourra désormais être activé ou désactivé en envoyant le code DTMF __200__.
+
+### Etape 4 - Redémarrage de SvxLink
+
+Enfin, pour finir, redémarrez __SvxLink__ à l'aide de la commande suivante :
+
+`/etc/spotnik/restart`
+
+Et voilà, c'est tout ;) Vous êtes pret à utiliser le RRFRaptor !
 
 ## Lancement du RRFRaptor
 
@@ -37,46 +64,67 @@ Le plus simple est de lancer le RRFRaptor en CLI (ligne de commande). Toujours d
 - pour activer le RRFRaptor : `/opt/RRFRaptor/RRFRaptor.sh start`
 - pour désactiver le RRFRaptor : `/opt/RRFRaptor/RRFRaptor.sh stop`
 
-Le RRFRaptor basculera sur sa position initiale (par défaut le salon RRF). En l'absence d'activité, au bout de 1 minute (par défaut), le RRFRaptor va s'activer et commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons.
+Sinon, vous pouvez également activer ou désactiver le RRFRaptor à l'aide du DTMF __200__.
+
+Dans tous les cas, une annonce vocale vous informera de l'activation ou de la désactivation du RRFRaptor.
+
+Une fois activé, en l'absence d'activité durant 1 minute (par défaut), le RRFRaptor va commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons et gérer lui même les QSY.
+ 
 
 # Paramétrages fins
 
 ## Changer les paramétrages par défaut
 
-Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de changer la durée de la temporisation (option `--sleep`). 
+Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de changer la durée de la temporisation par défaut (option `--sleep`). 
 
-L'option `--debug` présente juste un intérêt en phase de développement. Inutile de l'activer. 
+>L'option `--debug` présente juste un intérêt en phase de développement. Inutile de l'activer. 
 
 ## Ne pas prendre en compte certains salons
 
 Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `valid_room` (ligne 20) avec la liste des salons que vous voulez surveiller.
 
+## Mettre à jour la version du RRFRaptor
 
-## Activation et désactivation par commande DTMF
+Depuis votre connexion SSH, lancez les commandes suivantes :
 
-Il est possible d'activer et de désactiver le RRFRaptor par une simple commande DTMF.
+`cd /opt/RRFRaptor`
 
-Si vous n'êtes pas familier avec les fichiers de paramétrages de `Svxlink`, il vous suffit de copier le fichier `Logic.tcl` que j'ai déjà modifié pour vous. Donc, depuis une connexion SSH, lancer les commandes suivantes :
+Puis, 
 
-`mv /usr/share/svxlink/events.d/local/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl.bak`
+`git pull`
 
 
-`cp /opt/RRFRaptor/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl`
+## Modifier le code DTMF par défaut
 
-La première va faire une sauvegarde de votre fichier `Logic.tcl`, au cas ou. Et la seconde va copier le fichier `Logic.tcl` modifié afin de prendre en charge le RRFRaptor. 
-
-Sinon, vous pouvez éditer vous même le fichier avec votre éditeur préféré. Donc, dans le fichier `/usr/share/svxlink/events.d/local/Logic.tcl`, vers les lignes 600, vous trouverez des blocs de code concernant les commandes DTMF que vous connaissez déjà. Ajouter à la suite un nouveau bloc avec le code ci dessous:
+Si vous le souhaitez, vous pouvez modifier le code DTMF par défaut et l'adapter suivant vos besoins. Pour se faire, éditer le fichier `/usr/share/svxlink/events.d/local/Logic.tcl` à l'aide de votre éditeur préféré. Recherchez les blocs concernant les codes DTMF (vers les lignes 600...). Ajoutez et modifiez les 3 nouveaux blocs ci dessous en les adaptant à votre convenance :
 
 ```
-  # 200
+# 200 Raptor start and stop
   if {$cmd == "200"} {
     puts "Executing external command"
-    playFile /tmp/status.wav
     exec nohup /opt/RRFRaptor/RRFRaptor.sh &
+    return 1
+  }
+
+# 201 Raptor start sound
+  if {$cmd == "201"} {
+    puts "Executing external command"
+    playSilence 1500
+    playFile /opt/RRFRaptor/sounds/active.wav
+    return 1
+  }
+
+# 202 Raptor stop sound
+  if {$cmd == "202"} {
+    puts "Executing external command"
+    playSilence 1500
+    playFile /opt/RRFRaptor/sounds/desactive.wav
     return 1
   }
 ```
 
-Et voilà, le RRFRaptor peut être activé ou désactivé en envoyant la commande DTMF `200`. Vous pouvez évidemment choisir une autre commande.
+>Attention, si vous modifiez également les codes __201__ et __202__ qui servent aux annonces vocales, vous devrez les modifiez également dans le script `/opt/RRFRaptor/RRFRaptor.sh`. Ce changement n'est pas recommandé.
+
+# That's all
 
 Bon trafic à tous, 88 & 73 de Armel F4HWN !

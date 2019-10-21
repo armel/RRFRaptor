@@ -640,11 +640,26 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-# 200
+# 200 Raptor start and stop
   if {$cmd == "200"} {
     puts "Executing external command"
-    playFile /tmp/status.wav
     exec nohup /opt/RRFRaptor/RRFRaptor.sh &
+    return 1
+  }
+
+# 201 Raptor start sound
+  if {$cmd == "201"} {
+    puts "Executing external command"
+    playSilence 1500
+    playFile /opt/RRFRaptor/sounds/active.wav
+    return 1
+  }
+
+# 202 Raptor stop sound
+  if {$cmd == "202"} {
+    puts "Executing external command"
+    playSilence 1500
+    playFile /opt/RRFRaptor/sounds/desactive.wav
     return 1
   }
 
