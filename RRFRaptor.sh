@@ -30,6 +30,7 @@ sleep 2
 case "$1" in
     start)
         echo "Starting RRFRaptor"
+        kill `cat $PATH_PID/RRFRaptor.pid`
         echo "200#"> /tmp/dtmf_uhf
         echo "200#"> /tmp/dtmf_vhf
         ;;
