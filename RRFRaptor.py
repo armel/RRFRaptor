@@ -48,9 +48,14 @@ def main(argv):
         l.where_is()
         while(True):
             if l.read_log() is True:
+                data = l.scan()
+
+                print data
+                '''
                 file = open('/tmp/RRFRaptor.tmp', 'w')
                 file.write(l.scan)
                 file.close()
+                '''
                 sys.exit()
 
     else: # Sinon, boucle principale
