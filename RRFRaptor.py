@@ -45,10 +45,10 @@ def main(argv):
                 s.debug = False
 
     if s.scan is True: # Si scan simple
+        l.where_is()
         while(True):
-            l.where_is()
             if l.read_log() is True:
-                l.scan()
+                print l.scan()
                 sys.exit()
 
     else: # Sinon, boucle principale
