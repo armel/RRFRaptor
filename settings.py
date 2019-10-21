@@ -9,7 +9,7 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.1.2'
+version = '1.2.0'
 
 # Variables par defaut
 
