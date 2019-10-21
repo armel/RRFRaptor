@@ -83,6 +83,15 @@ Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de
 
 Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `valid_room` (ligne 20) avec la liste des salons que vous voulez surveiller.
 
+## Lancer le RRFRaptor au démarrage du Spotnik
+
+Il est évidemment possible de lancer le RRFRaptor au démarrage du Spotnik. Il suffit d'éditer le fichier `/etc/rc.local` et d'y ajouter les lignes suivantes, juste __avant__ le `exit 0` qui termine le script :
+
+```
+## demarrage Raptor
+/opt/RRFRaptor/RRFRaptor.sh start
+```
+
 ## Mettre à jour la version du RRFRaptor
 
 Depuis votre connexion SSH, lancez les commandes suivantes :
@@ -92,7 +101,6 @@ Depuis votre connexion SSH, lancez les commandes suivantes :
 Puis, 
 
 `git pull`
-
 
 ## Modifier le code DTMF par défaut
 
