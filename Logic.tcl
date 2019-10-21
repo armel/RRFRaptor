@@ -650,7 +650,7 @@ proc dtmf_cmd_received {cmd} {
 # 201 Raptor quick scan
   if {$cmd == "201"} {
     puts "Executing external command"
-    exec nohup /opt/RRFRaptor/RRFRaptor.sh --scan &
+    exec /opt/RRFRaptor/RRFRaptor.sh scan
     return 1
   }
 
