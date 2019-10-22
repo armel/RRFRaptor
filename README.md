@@ -1,5 +1,7 @@
 # RRFRaptor
-Le RRFRaptor analyse le trafic sur le réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones) et gère automatiquement les QSY de votre Spotnik afin de lui faire rejoindre automatiquement le salon sur lequel il y a de l'activité.  Attention, __il n'est pas recommandé de l'installer sur un relais__. Il est surtout adapté à un usage personnel. 
+Le RRFRaptor analyse le trafic sur le réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones) et gère automatiquement les QSY de votre Spotnik afin de lui faire rejoindre automatiquement le salon sur lequel il y a de l'activité.  Attention, __il n'est pas recommandé de l'installer sur un relais__ en permanence. Par contre, il est parfaitement adapté à un usage personnel. 
+
+> Pour ma part, j'active néanmoins le RRFRaptor sur le F1ZPX situé en JN18du, entre 22h05 et 06h05, période généralement assez calme sur le RRF.
 
 # Principe de fonctionnement
 Une fois le RRFRaptor lancé, tant qu'il y a de l'activité sur le salon sur lequel vous êtes, rien ne se passe. Le RRFRaptor reste en sommeil.
@@ -80,6 +82,7 @@ En CLI (ligne de commande), depuis une connexion SSH, lancez la commande suivant
 
 Sinon, vous pouvez également utiliser le code DTMF __201__.
 
+> S'il n'est pas forcément recommandé d'activer en permanence le RRFRaptor sur un relais, cette fonctionnalité de __scan rapide__ peut s'avérer très intéressante partout.  Un seul code DTMF peut renseigner les OM sur les QSO en cours sur les autres salons. À eux, si le RRFRaptor n'est pas activé, de gérer les QSY. 
 
 # Paramétrages fins
 
