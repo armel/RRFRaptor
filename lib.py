@@ -56,13 +56,18 @@ def read_log():
         if current_tot != 0: # Si le TOT tourne encore
             s.room[s.current_room]['last'] = time.time()
         else: # Sinon, on commence à regarder ailleurs
-            for data in rrf_data['elsewhere'][6]:
-                if data in s.valid_room:
-                    tmp = rrf_data['elsewhere'][6][data]
-                    if tmp != 0:
-                        s.room[data]['tot'] = tmp
-                    else:
-                        s.room[data]['tot'] = 0
+            try:
+                for data in rrf_data['elsewhere'][6]:
+                    if data in s.valid_room:
+                        tmp = rrf_data['elsewhere'][6][data]
+                        if tmp != 0:
+                            s.room[data]['tot'] = tmp
+                        else:
+                            s.room[data]['tot'] = 0
+            except:
+                if s.debug is True:
+                    print 'KeyError: \'elsewhere\''
+                return False
     else: # Si le flux est invalide
         if s.debug is True:
             print 'Failed to read...'
