@@ -9,7 +9,7 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.3.2'
+version = '1.3.3'
 
 # Variables par defaut
 
@@ -27,32 +27,32 @@ room = {
         'last': ''
     },
     'RRF': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf.json',
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf_tiny.json',
         'tot': 0,
         'last': ''
     }, 
     'TECHNIQUE': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/TECHNIQUE-today/rrf.json',
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/TECHNIQUE-today/rrf_tiny.json',
         'tot': 0,
         'last': ''
     }, 
     'INTERNATIONAL': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/INTERNATIONAL-today/rrf.json',
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/INTERNATIONAL-today/rrf_tiny.json',
         'tot': 0,
         'last': ''
     }, 
     'LOCAL': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/LOCAL-today/rrf.json',
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/LOCAL-today/rrf_tiny.json',
         'tot': 0,
         'last': ''
     },  
     'BAVARDAGE': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/BAVARDAGE-today/rrf.json',
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/BAVARDAGE-today/rrf_tiny.json',
         'tot': 0,
         'last': ''
     },  
     'FON': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/FON-today/rrf.json',
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/FON-today/rrf_tiny.json',
         'tot': 0,
         'last': ''
     }
