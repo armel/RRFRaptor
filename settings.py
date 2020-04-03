@@ -26,7 +26,7 @@ room = {
         'tot': 0,
         'last': ''
     },
-    'REG': {                # Salon passif
+    'REGIONAL': {           # Salon passif
         'url': '',
         'tot': 0,
         'last': ''
