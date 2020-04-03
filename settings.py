@@ -21,12 +21,12 @@ current_room = ''               # Salon courant
 valid_room = ['PERROQUET', 'REGIONAL', 'RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
 
 room = {
-    'PERROQUET': {         # Salon passif
+    'PERROQUET': {          # Salon passif
         'url': '',
         'tot': 0,
         'last': ''
     },
-    'REG': {            # Salon passif
+    'REG': {                # Salon passif
         'url': '',
         'tot': 0,
         'last': ''
