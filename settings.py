@@ -9,7 +9,7 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.3.3'
+version = '1.3.4'
 
 # Variables par defaut
 
@@ -18,10 +18,15 @@ scan = False                    # Mode scan
 debug = False                   # Mode debug
 current_room = ''               # Salon courant
 
-valid_room = ['PARROT', 'RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
+valid_room = ['PERROQUET', 'REGIONAL', 'RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
 
 room = {
-    'PARROT': {
+    'PERROQUET': {         # Salon passif
+        'url': '',
+        'tot': 0,
+        'last': ''
+    },
+    'REG': {            # Salon passif
         'url': '',
         'tot': 0,
         'last': ''
