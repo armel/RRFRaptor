@@ -125,8 +125,10 @@ def where_is():
         detect_room = 'LOCAL'
     elif content == 'tec':
         detect_room = 'TECHNIQUE'
+    elif content == 'reg':
+        detect_room = 'REGIONAL'
     elif content == 'default':
-        detect_room = 'PARROT'
+        detect_room = 'PERROQUET'
     else:
         detect_room = content.upper()
 

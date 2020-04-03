@@ -59,7 +59,7 @@ def main(argv):
             l.where_is()
             now = datetime.datetime.now()
 
-            if s.current_room != 'PARROT':  # Si pas sur le perroquet
+            if s.current_room not in ['PERROQUET', 'REGIONAL']:  # Si pas sur le perroquet
                 # Lecture de l'activité
                 l.read_log()
 
@@ -78,7 +78,7 @@ def main(argv):
                         print now.strftime('%H:%M:%S'), '-', 'Standby sur ' + s.current_room + ' depuis ' + str(int(s2 - s1)) + ' secondes'
             else: # Sinon on ne fait rien sur le perroquet
                 if s.debug is True:
-                    print now.strftime('%H:%M:%S'), '-', 'Perroquet...'
+                    print now.strftime('%H:%M:%S'), '-', s.current_room
 
             # On controle toutes les 2 secondes, c'est suffisant...
             time.sleep(5)
