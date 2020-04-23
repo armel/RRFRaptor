@@ -3,11 +3,11 @@ Le RRFRaptor analyse le trafic sur le réseau [RRF](https://f5nlg.wordpress.com/
 
 > Pour ma part, j'active néanmoins le RRFRaptor sur le F1ZPX situé en JN18du, entre 22h05 et 06h05, période généralement assez calme sur le RRF. J'ai ajouté les lignes suivantes dans la crontab :
 
-> `05 22 * * * /opt/RRFRaptor/RRFRaptor.sh start`
-
-> `05 06 * * * /opt/RRFRaptor/RRFRaptor.sh stop`
-
-> `06 06 * * * /bin/echo "96#" > /tmp/dtmf_uhf`
+> ```
+> 05 22 * * * /opt/RRFRaptor/RRFRaptor.sh start
+> 05 06 * * * /opt/RRFRaptor/RRFRaptor.sh stop
+> 06 06 * * * /bin/echo "96#" > /tmp/dtmf_uhf
+> ```
 
 # Principe de fonctionnement
 Une fois le RRFRaptor lancé, tant qu'il y a de l'activité sur le salon sur lequel vous êtes, rien ne se passe. Le RRFRaptor reste en sommeil.
