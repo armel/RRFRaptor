@@ -127,6 +127,12 @@ def where_is():
         detect_room = 'TECHNIQUE'
     elif content == 'reg':
         detect_room = 'REGIONAL'
+    elif content == 'fdv':
+        detect_room = 'FREEDV'
+    elif content == 'num':
+        detect_room = 'NUMERIQUE'
+    elif content == 'el':
+        detect_room = 'ECHOLINK'
     elif content == 'default':
         detect_room = 'PERROQUET'
     else:

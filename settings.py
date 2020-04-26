@@ -9,7 +9,7 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.3.4'
+version = '1.3.5'
 
 # Variables par defaut
 
@@ -18,19 +18,10 @@ scan = False                    # Mode scan
 debug = False                   # Mode debug
 current_room = ''               # Salon courant
 
-valid_room = ['PERROQUET', 'REGIONAL', 'RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Ajoutez le 'FON' si vous le souhaitez 
+valid_room  = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Liste des salons actifs (ajoutez le 'FON' si vous le souhaitez) 
+valid_room += ['PERROQUET', 'REGIONAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
 
 room = {
-    'PERROQUET': {          # Salon passif
-        'url': '',
-        'tot': 0,
-        'last': ''
-    },
-    'REGIONAL': {           # Salon passif
-        'url': '',
-        'tot': 0,
-        'last': ''
-    },
     'RRF': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf_tiny.json',
         'tot': 0,
@@ -58,6 +49,31 @@ room = {
     },  
     'FON': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/FON-today/rrf_tiny.json',
+        'tot': 0,
+        'last': ''
+    },
+    'PERROQUET': {          # Salon passif
+        'url': '',
+        'tot': 0,
+        'last': ''
+    },
+    'REGIONAL': {           # Salon passif
+        'url': '',
+        'tot': 0,
+        'last': ''
+    },
+    'FREEDV': {             # Salon passif
+        'url': '',
+        'tot': 0,
+        'last': ''
+    },
+    'NUMERIQUE': {          # Salon passif
+        'url': '',
+        'tot': 0,
+        'last': ''
+    },
+    'ECHOLINK': {           # Salon passif
+        'url': '',
         'tot': 0,
         'last': ''
     }
