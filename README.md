@@ -102,7 +102,7 @@ Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de
 
 ## Ne pas prendre en compte certains salons
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `valid_room` (ligne 21) avec la liste des salons que vous voulez surveiller.
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `active_room` (ligne 21) avec la liste des salons que vous voulez surveiller.
 
 À noter qu'il existe 2 types de salons : 
 
