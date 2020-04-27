@@ -80,7 +80,7 @@ def main(argv):
                 if s.debug is True:
                     print now.strftime('%H:%M:%S'), '-', s.current_room
 
-            # On controle toutes les 2 secondes, c'est suffisant...
+            # On controle toutes les 5 secondes, c'est suffisant...
             time.sleep(5)
             sys.stdout.flush()
 
