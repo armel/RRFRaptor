@@ -13,6 +13,7 @@ import os
 import time
 import datetime
 import json
+import sys
 
 # Usage
 def usage():
@@ -95,6 +96,7 @@ def qsy(new_room = ''):
     if cmd != '':
         now = datetime.datetime.now()
         print now.strftime('%H:%M:%S'), '- Execute', cmd, '(', old_room, ' -> ', s.current_room, ')'
+        sys.stdout.flush()
         os.system(cmd)
         time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
         cmd = '/usr/bin/pkill -f timersalon'
@@ -147,19 +149,8 @@ def where_is():
         if s.scan is False:
             now = datetime.datetime.now()
             print now.strftime('%H:%M:%S'), '- QSY manuel', '(', s.current_room, ' -> ', detect_room, ')'
+            sys.stdout.flush()
         s.current_room = detect_room
         s.room[s.current_room]['last'] = time.time()
             
-    return True
-
-# Trace debugage
-def trace():
-    for data in s.room:
-        print data, 
-        if s.room[data]['tot'] == '':
-            print s.room[data]['last']
-        else:
-            print s.room[data]['tot']
-    print '-----'
-
     return True
