@@ -58,7 +58,7 @@ def read_log():
         else: # Sinon, on commence à regarder ailleurs
             try:
                 for data in rrf_data['elsewhere'][6]:
-                    if data in s.valid_room:
+                    if data in s.active_room:
                         tmp = rrf_data['elsewhere'][6][data]
                         if tmp != 0:
                             s.room[data]['tot'] = tmp
@@ -83,7 +83,7 @@ def qsy(new_room = ''):
     if new_room != '': # Si une room est passée en argument
         cmd = '/etc/spotnik/restart.' + new_room[:3].lower()
     else: # Sinon
-        for data in s.valid_room:
+        for data in s.active_room:
             if data != s.current_room:
                 if s.room[data]['tot'] >= 3:
                     s.current_room = data
@@ -104,7 +104,7 @@ def qsy(new_room = ''):
 
 # Gestion du scan simple
 def scan():
-    for data in s.valid_room:
+    for data in s.active_room:
         if s.room[data]['tot'] >= 3:
             return data
             break
@@ -139,7 +139,7 @@ def where_is():
         detect_room = content.upper()
 
     # QSY sur le salon RRF si perdu...
-    if detect_room not in s.valid_room:
+    if detect_room not in s.active_room:
         s.current_room = 'RRF'
         qsy(s.current_room)
         s.room[s.current_room]['last'] = time.time()

@@ -18,8 +18,9 @@ scan = False                    # Mode scan
 debug = False                   # Mode debug
 current_room = ''               # Salon courant
 
-valid_room  = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Liste des salons actifs (ajoutez le 'FON' si vous le souhaitez) 
-valid_room += ['PERROQUET', 'REGIONAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
+active_room  = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Liste des salons actifs (ajoutez le 'FON' si vous le souhaitez) 
+passiv_room  = ['PERROQUET', 'REGIONAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
+active_room += passiv_room
 
 room = {
     'RRF': {

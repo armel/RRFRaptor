@@ -59,7 +59,7 @@ def main(argv):
             l.where_is()
             now = datetime.datetime.now()
 
-            if s.current_room not in ['PERROQUET', 'REGIONAL']:  # Si pas sur le perroquet
+            if s.current_room not in s.passiv_room:  # Si ce n'est pas un salon passif
                 # Lecture de l'activité
                 l.read_log()
 
