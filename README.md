@@ -102,7 +102,14 @@ Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de
 
 ## Ne pas prendre en compte certains salons
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `valid_room` (ligne 20) avec la liste des salons que vous voulez surveiller.
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `valid_room` (ligne 21) avec la liste des salons que vous voulez surveiller.
+
+À noter qu'il existe 2 types de salons : 
+
+- Les salons _actifs_ (ligne 21) : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL et FON
+- Les salons _passifs_ (ligne 22) : PERROQUET, REGIONAL, FREEDV, NUMERIQUE et ECHOLINK
+
+Seuls les salons _actifs_ font l'objet d'une surveillance par le RRFRaptor. La liste des salons _passifs_ permet uniquement d'autoriser un QSY __manuel__ sur ces salons, même si le RRFRaptor est enclenché. 
 
 ## Lancer le RRFRaptor au démarrage du Spotnik
 
