@@ -19,7 +19,7 @@ debug = False                   # Mode debug
 current_room = ''               # Salon courant
 
 active_room  = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Liste des salons actifs (ajoutez le 'FON' si vous le souhaitez) 
-passiv_room  = ['PERROQUET', 'REGIONAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
+passiv_room  = ['PERROQUET', 'REGIONAL', 'EXPERIMENTAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
 active_room += passiv_room
 
 room = {
@@ -70,6 +70,12 @@ room = {
         'tot': 0,
         'last': '',
         'label': 'reg'
+    },
+    'EXPERIMENTAL': {       # Salon passif
+        'url': '',
+        'tot': 0,
+        'last': '',
+        'label': 'exp'
     },
     'FREEDV': {             # Salon passif
         'url': '',
