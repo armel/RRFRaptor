@@ -95,7 +95,7 @@ def qsy(new_room = ''):
     # Si une commande est en attente... on la joue !
     if cmd != '':
         now = datetime.datetime.now()
-        print(now.strftime('%H:%M:%S'), '- Execute', cmd, '(', old_room, ' -> ', s.current_room, ')')
+        print(now.strftime('%H:%M:%S') + ' - Execute ' + cmd + '(' + old_room + ' -> ' + s.current_room + ')')
         sys.stdout.flush()
         os.system(cmd)
         time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
@@ -131,7 +131,7 @@ def where_is():
     elif detect_room != s.current_room: # Si changement de salon...
         if s.scan is False:
             now = datetime.datetime.now()
-            print(now.strftime('%H:%M:%S'), '- QSY manuel', '(', s.current_room, ' -> ', detect_room, ')')
+            print(now.strftime('%H:%M:%S') + ' - QSY manuel (' + s.current_room + ' -> ' + detect_room + ')')
             sys.stdout.flush()
         s.current_room = detect_room
         s.room[s.current_room]['last'] = time.time()
