@@ -120,7 +120,7 @@ def where_is():
     content = content.strip()
 
     for r in s.room:
-        if room[r]['label'] == content:
+        if s.room[r]['label'] == content:
             detect_room = r
 
     # QSY sur le salon RRF si perdu...
