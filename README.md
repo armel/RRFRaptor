@@ -40,9 +40,9 @@ Puis,
 
 Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Rassurez-vous, ce sera rapide. Toujours depuis votre connexion SSH, lancez les commandes suivantes :
 
-`sudo apt-get install python-pip`
+`sudo apt-get install python-pip3`
 
-`sudo pip install requests`
+`sudo pip3 install requests`
 
 ### Etape 3 - Ajout des codes DTMF
 
