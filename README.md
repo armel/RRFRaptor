@@ -126,11 +126,9 @@ Depuis votre connexion SSH, lancez les commandes suivantes :
 
 `git pull`
 
-`mv /usr/share/svxlink/events.d/local/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl.bak`
+`/opt/RRFRaptor/RRFRaptor.sh stop`
 
-`cp /opt/RRFRaptor/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl`
-
-`/etc/spotnik/restart`
+`/opt/RRFRaptor/RRFRaptor.sh start`
 
 Et voilà, votre version est à jour.
 
