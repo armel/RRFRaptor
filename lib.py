@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''
@@ -17,18 +17,18 @@ import sys
 
 # Usage
 def usage():
-    print 'Usage: RRFRaptor.py [options ...]'
-    print
-    print '--help                           cet aide'
-    print '--version                        numéro de version'
-    print
-    print 'Parametrages:'
-    print 
-    print '  --sleep            nombre      Nombre de minutes avant scanning (3 minutes par défaut)'
-    print '  --scan             booléen     Mode scan [True, False (défaut)]'
-    print '  --debug            booléen     Mode debug [True, False (défaut)]'
-    print
-    print '88 & 73 from F4HWN Armel'
+    print('Usage: RRFRaptor.py [options ...]')
+    print()
+    print('--help                           Cet aide')
+    print('--version                        Numéro de version')
+    print()
+    print('Parametrages:')
+    print() 
+    print('  --sleep            nombre      Nombre de minutes avant scanning (1 minute par défaut)')
+    print('  --scan             booléen     Mode scan [True, False (défaut)]')
+    print('  --debug            booléen     Mode debug [True, False (défaut)]')
+    print()
+    print('88 & 73 from F4HWN Armel')
 
 
 # Lecture du flux Json
@@ -38,9 +38,9 @@ def read_log():
     try:
         r = requests.get(s.room[s.current_room]['url'], verify=False, timeout=10)
     except requests.exceptions.ConnectionError as errc:
-        print ('Error Connecting:', errc)
+        print(('Error Connecting:', errc))
     except requests.exceptions.Timeout as errt:
-        print ('Timeout Error:', errt)
+        print(('Timeout Error:', errt))
 
     # Controle de la validité du flux json
     rrf_data = ''
@@ -67,11 +67,11 @@ def read_log():
                             s.room[data]['tot'] = 0
             except:
                 if s.debug is True:
-                    print 'KeyError: \'elsewhere\''
+                    print('KeyError: \'elsewhere\'')
                 return False
     else: # Si le flux est invalide
         if s.debug is True:
-            print 'Failed to read...'
+            print('Failed to read...')
         return False
 
     return True
@@ -95,7 +95,7 @@ def qsy(new_room = ''):
     # Si une commande est en attente... on la joue !
     if cmd != '':
         now = datetime.datetime.now()
-        print now.strftime('%H:%M:%S'), '- Execute', cmd, '(', old_room, ' -> ', s.current_room, ')'
+        print(now.strftime('%H:%M:%S') + ' - Execute ' + cmd + '(' + old_room + ' -> ' + s.current_room + ')')
         sys.stdout.flush()
         os.system(cmd)
         time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
@@ -119,26 +119,9 @@ def where_is():
         content = content_file.read()
     content = content.strip()
 
-    if content == 'int':
-        detect_room = 'INTERNATIONAL'
-    elif content == 'bav':
-        detect_room = 'BAVARDAGE'
-    elif content == 'loc':
-        detect_room = 'LOCAL'
-    elif content == 'tec':
-        detect_room = 'TECHNIQUE'
-    elif content == 'reg':
-        detect_room = 'REGIONAL'
-    elif content == 'fdv':
-        detect_room = 'FREEDV'
-    elif content == 'num':
-        detect_room = 'NUMERIQUE'
-    elif content == 'el':
-        detect_room = 'ECHOLINK'
-    elif content == 'default':
-        detect_room = 'PERROQUET'
-    else:
-        detect_room = content.upper()
+    for r in s.room:
+        if s.room[r]['label'] == content:
+            detect_room = r
 
     # QSY sur le salon RRF si perdu...
     if detect_room not in s.active_room:
@@ -148,7 +131,7 @@ def where_is():
     elif detect_room != s.current_room: # Si changement de salon...
         if s.scan is False:
             now = datetime.datetime.now()
-            print now.strftime('%H:%M:%S'), '- QSY manuel', '(', s.current_room, ' -> ', detect_room, ')'
+            print(now.strftime('%H:%M:%S') + ' - QSY manuel (' + s.current_room + ' -> ' + detect_room + ')')
             sys.stdout.flush()
         s.current_room = detect_room
         s.room[s.current_room]['last'] = time.time()

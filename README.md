@@ -40,9 +40,7 @@ Puis,
 
 Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Rassurez-vous, ce sera rapide. Toujours depuis votre connexion SSH, lancez les commandes suivantes :
 
-`sudo apt-get install python-pip`
-
-`sudo pip install requests`
+`sudo pip3 install requests`
 
 ### Etape 3 - Ajout des codes DTMF
 
@@ -128,11 +126,9 @@ Depuis votre connexion SSH, lancez les commandes suivantes :
 
 `git pull`
 
-`mv /usr/share/svxlink/events.d/local/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl.bak`
+`/opt/RRFRaptor/RRFRaptor.sh stop`
 
-`cp /opt/RRFRaptor/Logic.tcl /usr/share/svxlink/events.d/local/Logic.tcl`
-
-`/etc/spotnik/restart`
+`/opt/RRFRaptor/RRFRaptor.sh start`
 
 Et voilà, votre version est à jour.
 

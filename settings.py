@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''
@@ -9,7 +9,7 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.3.5'
+version = '1.4.0'
 
 # Variables par defaut
 
@@ -19,63 +19,80 @@ debug = False                   # Mode debug
 current_room = ''               # Salon courant
 
 active_room  = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Liste des salons actifs (ajoutez le 'FON' si vous le souhaitez) 
-passiv_room  = ['PERROQUET', 'REGIONAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
+passiv_room  = ['PERROQUET', 'REGIONAL', 'EXPERIMENTAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
 active_room += passiv_room
 
 room = {
     'RRF': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf_tiny.json',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'rrf' 
     }, 
     'TECHNIQUE': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/TECHNIQUE-today/rrf_tiny.json',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'tec'
     }, 
     'INTERNATIONAL': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/INTERNATIONAL-today/rrf_tiny.json',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'int'
     }, 
     'LOCAL': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/LOCAL-today/rrf_tiny.json',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'loc'
     },  
     'BAVARDAGE': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/BAVARDAGE-today/rrf_tiny.json',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'bav'
     },  
     'FON': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/FON-today/rrf_tiny.json',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'fon'
     },
     'PERROQUET': {          # Salon passif
         'url': '',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'default'
     },
     'REGIONAL': {           # Salon passif
         'url': '',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'reg'
+    },
+    'EXPERIMENTAL': {       # Salon passif
+        'url': '',
+        'tot': 0,
+        'last': '',
+        'label': 'exp'
     },
     'FREEDV': {             # Salon passif
         'url': '',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'fdv'
     },
     'NUMERIQUE': {          # Salon passif
         'url': '',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'num'
     },
     'ECHOLINK': {           # Salon passif
         'url': '',
         'tot': 0,
-        'last': ''
+        'last': '',
+        'label': 'el'
     }
 }
