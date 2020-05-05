@@ -38,7 +38,7 @@ Puis,
 
 ### Etape 2 - Installation des dépendances
 
-Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Rassurez-vous, ce sera rapide. Toujours depuis votre connexion SSH, lancez les commandes suivantes :
+Si nécessaire, il faut également procéder à l'installation de quelques paquets complémentaires. Rassurez-vous, ce sera rapide. Toujours depuis votre connexion SSH, lancez la commande suivante :
 
 `sudo pip3 install requests`
 
