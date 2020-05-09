@@ -47,11 +47,15 @@ def main(argv):
     if s.scan is True: # Si scan simple
         l.where_is()
         while(True):
-            if l.read_log() is True:
-                file = open('/tmp/RRFRaptor_scan.tcl', 'w')
-                file.write('set RRFRaptor "' + l.scan() + '"\n')
-                file.close()
+            if s.current_room not in s.passiv_room:  # Si ce n'est pas un salon passif
+                if l.read_log() is True:
+                    file = open('/tmp/RRFRaptor_scan.tcl', 'w')
+                    file.write('set RRFRaptor "' + l.scan() + '"\n')
+                    file.close()
+                    sys.exit()
+            else:
                 sys.exit()
+
 
     else: # Sinon, boucle principale
         while(True):
