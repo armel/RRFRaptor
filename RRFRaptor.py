@@ -53,9 +53,8 @@ def main(argv):
                     file.write('set RRFRaptor "' + l.scan() + '"\n')
                     file.close()
                     sys.exit()
-            else:
+            else: # Si c'est un salon passif, le scan ne fonctionne pas
                 sys.exit()
-
 
     else: # Sinon, boucle principale
         while(True):
