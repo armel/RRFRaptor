@@ -124,11 +124,13 @@ Il est évidemment possible de lancer le RRFRaptor au démarrage du Spotnik. Il 
 
 Depuis votre connexion SSH, lancez les commandes suivantes :
 
+`/opt/RRFRaptor/RRFRaptor.sh stop`
+
 `cd /opt/RRFRaptor`
 
 `git pull`
 
-`/opt/RRFRaptor/RRFRaptor.sh stop`
+`sudo pip3 install requests`
 
 `/opt/RRFRaptor/RRFRaptor.sh start`
 
