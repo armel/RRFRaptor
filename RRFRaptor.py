@@ -54,7 +54,7 @@ def main(argv):
                     file.close()
                     sys.exit()
             else: # Si c'est un salon passif, le scan ne fonctionne pas
-                file.write('set RRFRaptor "Passiv"\n')
+                file.write('set RRFRaptor "None"\n')
                 file.close()
                 sys.exit()
 
