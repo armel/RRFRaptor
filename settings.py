@@ -9,7 +9,7 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.4.2'
+version = '1.5.0'
 
 # Variables par defaut
 
@@ -18,9 +18,10 @@ scan = False                    # Mode scan
 debug = False                   # Mode debug
 current_room = ''               # Salon courant
 
+default_room = 'RRF'            # Salon par defaut si le RRFRaptor est perdu...
 active_room  = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Liste des salons actifs (ajoutez le 'FON' si vous le souhaitez) 
-passiv_room  = ['PERROQUET', 'REGIONAL', 'EXPERIMENTAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
-active_room += passiv_room
+passive_room = ['PERROQUET', 'REGIONAL', 'EXPERIMENTAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK']   # Liste des salons passifs...
+active_room += passive_room
 
 room = {
     'RRF': {

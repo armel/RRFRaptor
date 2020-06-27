@@ -100,16 +100,22 @@ Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de
 
 ## Ne pas prendre en compte certains salons
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `active_room` (ligne 21) qui liste les salons _actifs_ que vous souhaitez surveiller. Idem avec la variable `passiv_room` (ligne 22) pour les salons _passifs_.
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `active_room` (ligne 22) qui liste les salons _actifs_ que vous souhaitez surveiller. Idem avec la variable `passive_room` (ligne 23) pour les salons _passifs_.
 
 À noter qu'il existe 2 types de salons : 
 
-- Les salons _actifs_ (ligne 21) : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL et FON
-- Les salons _passifs_ (ligne 22) : PERROQUET, REGIONAL, EXPERIMENTAL, FREEDV, NUMERIQUE et ECHOLINK
+- Les salons _actifs_ (ligne 22) : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL et FON
+- Les salons _passifs_ (ligne 23) : PERROQUET, REGIONAL, EXPERIMENTAL, FREEDV, NUMERIQUE et ECHOLINK
 
 Seuls les salons _actifs_ font l'objet d'une surveillance par le RRFRaptor. La liste des salons _passifs_ permet uniquement d'autoriser un QSY __manuel__ (via commandes DTMF ou autres) sur ces salons, même si le RRFRaptor est enclenché. Dans ce cas, le `timersalon.sh` prendra en charge le QSY avec retour sur le salon RRF en l'absence d'activité pendant 6 minutes (valeur par défaut).
 
-Enfin, retenez que si vous forcez un QSY vers un salon __non référencé__ dans la liste des salons _actifs_ ou des salons _passifs_, le RRFRaptor vous enverra vers le salon RRF.
+Enfin, retenez que si vous forcez un QSY vers un salon __non référencé__ dans la liste des salons _actifs_ ou des salons _passifs_, le RRFRaptor vous enverra vers le salon RRF (par défaut, voir points ci dessous).
+
+## Changer le salon par défaut
+
+Quant le RRFRaptor est activé, le link a la possibilité d'aller sur l'ensemble des salons _actifs_ et _passifs_ (voir point ci dessus). Mais si un OM force un QSY (via commande DTMF ou autres moyens) sur un salon ne faisant pas partie de ces 2 listes, le RRFRaptor vous enverra vers le salon RRF. Il est possible de modifier ce salon. 
+
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `default_room` (ligne 21) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL ou FON.
 
 ## Lancer le RRFRaptor au démarrage du Spotnik
 

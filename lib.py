@@ -125,7 +125,7 @@ def where_is():
 
     # QSY sur le salon RRF si perdu...
     if detect_room not in s.active_room:
-        s.current_room = 'RRF'
+        s.current_room = default_room
         qsy(s.current_room)
         s.room[s.current_room]['last'] = time.time()
     elif detect_room != s.current_room: # Si changement de salon...

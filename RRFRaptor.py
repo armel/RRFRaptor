@@ -48,7 +48,7 @@ def main(argv):
         l.where_is()
         file = open('/tmp/RRFRaptor_scan.tcl', 'w')
         while(True):
-            if s.current_room not in s.passiv_room:  # Si ce n'est pas un salon passif
+            if s.current_room not in s.passive_room:  # Si ce n'est pas un salon passif
                 if l.read_log() is True:
                     file.write('set RRFRaptor "' + l.scan() + '"\n')
                     file.close()
@@ -64,7 +64,7 @@ def main(argv):
             l.where_is()
             now = datetime.datetime.now()
 
-            if s.current_room not in s.passiv_room:  # Si ce n'est pas un salon passif
+            if s.current_room not in s.passive_room:  # Si ce n'est pas un salon passif
                 # Lecture de l'activité
                 l.read_log()
 
