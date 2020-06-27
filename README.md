@@ -117,6 +117,15 @@ Quant le RRFRaptor est activé, le link a la possibilité d'aller sur l'ensemble
 
 Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `default_room` (ligne 21) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL ou FON.
 
+>
+Exemple pratique. Si vous souhaitez suivre l'ensemble des salons _actifs_ mais exclure le salon RRF et autoriser l'utilisation du PERROQUET, voici la configuration permettant de le faire en choisissant le salon TECHNIQUE comme salon par défaut :
+
+```
+default_room = 'TECHNIQUE'     # Salon par defaut si le RRFRaptor est perdu...
+active_room  = ['TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']    # Liste des salons actifs
+passive_room = ['PERROQUET']   # Liste des salons passifs...
+```
+
 ## Lancer le RRFRaptor au démarrage du Spotnik
 
 Il est évidemment possible de lancer le RRFRaptor au démarrage du Spotnik. Il suffit d'éditer le fichier `/etc/rc.local` et d'y ajouter les lignes suivantes, juste __avant__ le `exit 0` qui termine le script :

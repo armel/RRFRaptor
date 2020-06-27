@@ -123,7 +123,7 @@ def where_is():
         if s.room[r]['label'] == content:
             detect_room = r
 
-    # QSY sur le salon RRF si perdu...
+    # QSY sur le salon par defaut si perdu...
     if detect_room not in s.active_room:
         s.current_room = s.default_room
         qsy(s.current_room)
