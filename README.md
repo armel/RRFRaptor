@@ -1,13 +1,22 @@
 # RRFRaptor
 Le RRFRaptor analyse le trafic sur le réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones) et gère automatiquement les QSY de votre Spotnik afin de lui faire rejoindre automatiquement le salon sur lequel il y a de l'activité.  Attention, __il n'est pas recommandé de l'installer sur un relais__ en permanence. Par contre, il est parfaitement adapté à un usage personnel. 
 
-> Pour ma part, j'active néanmoins le RRFRaptor sur le F1ZPX situé en JN18du, entre 22h05 et 06h05, période généralement assez calme sur le RRF. J'ai ajouté les lignes suivantes dans la crontab :
+> Pour ma part, j'active néanmoins le RRFRaptor sur le F1ZPX situé en JN18du, entre 22h05 et 06h05, période généralement assez calme sur le RRF. J'ai ajouté les lignes suivantes dans la crontab du user _root_, via la commande `crontab -e` :
 
 > ```
 > 05 22 * * * /opt/RRFRaptor/RRFRaptor.sh start
 > 05 06 * * * /opt/RRFRaptor/RRFRaptor.sh stop
 > 06 06 * * * /bin/echo "96#" > /tmp/dtmf_uhf
 > ```
+
+> Vous pouvez aussi vous contenter d'éditer le fichier `/etc/crontab` avec votre éditeur préféré et ajouter les lignes : 
+
+> ```
+> 05 22 * * * root /opt/RRFRaptor/RRFRaptor.sh start
+> 05 06 * * * root /opt/RRFRaptor/RRFRaptor.sh stop
+> 06 06 * * * root /bin/echo "96#" > /tmp/dtmf_uhf
+> ```
+
 
 # Principe de fonctionnement
 Une fois le RRFRaptor lancé, tant qu'il y a de l'activité sur le salon sur lequel vous êtes, rien ne se passe. Le RRFRaptor reste en sommeil.
