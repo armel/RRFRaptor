@@ -27,7 +27,7 @@ Si le trafic reprend entre temps sur le salon sur lequel vous étiez, évidemmen
 
 Par contre, si le trafic ne reprend pas et que le RRFRaptor détecte de l'activité sur un autre salon, alors il va automatiquement faire basculer votre Spotnik sur celui ci.
 
-> Par défaut, le FON n'est pas pris en charge. Mais vous pouvez l'ajouter à la liste des salons à surveiller. Voir ligne 21 du fichier `settings.py`.
+> Par défaut, le FON n'est pas pris en charge. Mais vous pouvez l'ajouter à la liste des salons à surveiller. Voir ligne 22 du fichier `settings.py`.
 
 # Installation
 
