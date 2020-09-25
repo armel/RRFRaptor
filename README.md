@@ -152,6 +152,8 @@ Depuis votre connexion SSH, lancez les commandes suivantes :
 
 `cd /opt/RRFRaptor`
 
+`git reset --hard`
+
 `git pull`
 
 `sudo pip3 install requests`
