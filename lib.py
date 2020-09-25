@@ -59,7 +59,7 @@ def read_log():
         else: # Sinon, on commence à regarder ailleurs
             try:
                 for data in rrf_data['elsewhere'][6]:
-                    if data in s.active_room:
+                    if data in s.active_room and data not in s.passive_room:
                         tmp = rrf_data['elsewhere'][6][data]
                         if tmp != 0:
                             s.room[data]['tot'] = tmp
