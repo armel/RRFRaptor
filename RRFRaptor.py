@@ -20,7 +20,7 @@ def main(argv):
 
     # Check et capture des arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'version', 'sleep=', 'scan=', 'debug='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'version', 'sleep=', 'scan=', 'parking=', 'debug='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -38,6 +38,11 @@ def main(argv):
                 s.scan = True
             else:
                 s.scan = False
+        elif opt in ('--parking'):
+            if arg in ['True', 'true']:
+                s.parking = True
+            else:
+                s.parking = False
         elif opt in ('--debug'):
             if arg in ['True', 'true']:
                 s.debug = True
@@ -72,7 +77,12 @@ def main(argv):
                 s1 = s.room[s.current_room]['last']
                 s2 = time.time()
 
-                if (s2 - s1) > s.sleep * 60: # Si la limite de temporisation atteinte, on scan
+                if (s2 - s1) > s.sleep: # Si la limite de temporisation atteinte, on scan
+                    if s.parking is True and s.current_room != s.default_room:
+                        s.current_room = s.default_room
+                        qsy(s.current_room)
+                        if s.debug is True:
+                            print(now.strftime('%H:%M:%S') + ' - Parking sur ' + s.current_room + '...')
                     if s.debug is True or s.scan is True: # Attention, on réutilise ici la variable s.scan mais ne pas la confondre avec l'option --scan
                         s.scan = False
                         print(now.strftime('%H:%M:%S') + ' - Scan en cours...')
