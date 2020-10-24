@@ -77,10 +77,11 @@ def main(argv):
                 s1 = s.room[s.current_room]['last']
                 s2 = time.time()
 
-                if (s2 - s1) > float(s.sleep): # Si la limite de temporisation atteinte, on scan
+                if (s2 - s1) > s.sleep: # Si la limite de temporisation atteinte, on scan
                     if s.parking is True and s.current_room != s.default_room:
                         s.current_room = s.default_room
                         l.qsy(s.current_room)
+                        s.room[s.current_room]['last'] = time.time()
                         if s.debug is True:
                             print(now.strftime('%H:%M:%S') + ' - Parking sur ' + s.current_room + '...')
                     if s.debug is True or s.scan is True: # Attention, on réutilise ici la variable s.scan mais ne pas la confondre avec l'option --scan
