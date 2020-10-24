@@ -78,8 +78,8 @@ def main(argv):
                 s2 = time.time()
 
                 if (s2 - s1) > s.sleep: # Si la limite de temporisation atteinte, on scan
-                    if s.parking is True and s.current_room != s.default_room:
-                        s.current_room = s.default_room
+                    if s.parking is True and s.current_room != s.base_room:
+                        s.current_room = s.base_room
                         l.qsy(s.current_room)
                         s.room[s.current_room]['last'] = s1
                         if s.debug is True:

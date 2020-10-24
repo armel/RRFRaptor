@@ -27,7 +27,7 @@ Si le trafic reprend entre temps sur le salon sur lequel vous étiez, évidemmen
 
 Par contre, si le trafic ne reprend pas et que le RRFRaptor détecte de l'activité sur un autre salon, alors il va automatiquement faire basculer votre Spotnik sur celui ci.
 
-> Par défaut, le FON n'est pas pris en charge. Mais vous pouvez l'ajouter à la liste des salons à surveiller. Voir ligne 22 du fichier `settings.py`.
+> Par défaut, le FON n'est pas pris en charge. Mais vous pouvez l'ajouter à la liste des salons à surveiller. Voir ligne 24 du fichier `settings.py`.
 
 # Installation
 
@@ -101,39 +101,45 @@ Sinon, vous pouvez également utiliser le code DTMF __201__.
 
 # Paramétrages fins
 
-## Changer les paramétrages par défaut
+## Changer la temporisation, par défaut
 
-Vous pouvez évidemment éditer le fichier `/opt/RRFRaptor/RRFRaptor.sh` afin de changer la durée de la temporisation par défaut (option `--sleep`). 
+Lorsqu'un QSO se termine, le RRFRaptor patiente pendant une certaine durée, avant de débuter la recherche de QSO sur les autres salons. Par défaut, cette temporisation est de _60_ secondes. Mais il est évidemment possible de la changer. 
 
->L'option `--debug` présente juste un intérêt en phase de développement. Inutile de l'activer. 
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `sleep` (ligne 16) en indiquant une durée exprimée en secondes.
+
+## Changer le salon de base, par défaut
+
+Quant le RRFRaptor est activé, le Spotnik a la possibilité d'aller sur l'ensemble des salons _actifs_ et _passifs_ (voir point ci dessus). Mais si un OM force un QSY (via commande DTMF ou autres moyens) sur un salon ne faisant pas partie de ces 2 listes, le RRFRaptor vous enverra vers le salon de base. Par défaut, ce salon de base est _RRF_. Mais il est évidemment possible de le changer. 
+
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `base_room` (ligne 24) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL ou FON.
+
+>
+Exemple pratique. Si vous souhaitez suivre l'ensemble des salons _actifs_ mais exclure le salon RRF et autoriser l'utilisation du PERROQUET, voici la configuration permettant de le faire en choisissant le salon TECHNIQUE comme salon de base :
+
+```
+base_room = 'TECHNIQUE'     # Salon de base si le RRFRaptor est perdu...
+active_room  = ['TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']    # Liste des salons actifs
+passive_room = ['PERROQUET']   # Liste des salons passifs...
+```
+
+## Changer la stratégie de _parking_ par défaut
+
+Lorsqu'un QSO se termine, le RRFRaptor patiente pendant une certaine durée avant de débuter la recherche de QSO sur les autres salons. Par défaut, il reste sur la salon courant. Mais il est possible de lui demander de retourner préventivement sur le salon de base.
+
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `parking` (ligne 17) en indiquant `True`, si vous souhaitez retourner préventivement sur le salon de base.
 
 ## Ne pas prendre en compte certains salons
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `active_room` (ligne 22) qui liste les salons _actifs_ que vous souhaitez surveiller. Idem avec la variable `passive_room` (ligne 23) pour les salons _passifs_.
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `active_room` (ligne 24) qui liste les salons _actifs_ que vous souhaitez surveiller. Idem avec la variable `passive_room` (ligne 25) pour les salons _passifs_.
 
 À noter qu'il existe 2 types de salons : 
 
-- Les salons _actifs_ (ligne 22) : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL et FON
-- Les salons _passifs_ (ligne 23) : PERROQUET, REGIONAL, EXPERIMENTAL, FREEDV, NUMERIQUE et ECHOLINK
+- Les salons _actifs_ (ligne 24) : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL et FON
+- Les salons _passifs_ (ligne 25) : PERROQUET, REGIONAL, EXPERIMENTAL, FREEDV, NUMERIQUE, ECHOLINK et ADMIN
 
 Seuls les salons _actifs_ font l'objet d'une surveillance par le RRFRaptor. La liste des salons _passifs_ permet uniquement d'autoriser un QSY __manuel__ (via commandes DTMF ou autres) sur ces salons, même si le RRFRaptor est enclenché. Dans ce cas, le `timersalon.sh` prendra en charge le QSY avec retour sur le salon RRF en l'absence d'activité pendant 6 minutes (valeur par défaut).
 
 Enfin, retenez que si vous forcez un QSY vers un salon __non référencé__ dans la liste des salons _actifs_ ou des salons _passifs_, le RRFRaptor vous enverra vers le salon RRF (par défaut, voir points ci dessous).
-
-## Changer le salon par défaut
-
-Quant le RRFRaptor est activé, le link a la possibilité d'aller sur l'ensemble des salons _actifs_ et _passifs_ (voir point ci dessus). Mais si un OM force un QSY (via commande DTMF ou autres moyens) sur un salon ne faisant pas partie de ces 2 listes, le RRFRaptor vous enverra vers le salon RRF. Il est possible de modifier ce salon. 
-
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `default_room` (ligne 21) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL ou FON.
-
->
-Exemple pratique. Si vous souhaitez suivre l'ensemble des salons _actifs_ mais exclure le salon RRF et autoriser l'utilisation du PERROQUET, voici la configuration permettant de le faire en choisissant le salon TECHNIQUE comme salon par défaut :
-
-```
-default_room = 'TECHNIQUE'     # Salon par defaut si le RRFRaptor est perdu...
-active_room  = ['TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']    # Liste des salons actifs
-passive_room = ['PERROQUET']   # Liste des salons passifs...
-```
 
 ## Lancer le RRFRaptor au démarrage du Spotnik
 
@@ -207,17 +213,17 @@ Si vous le souhaitez, vous pouvez modifier les codes DTMF par défaut et les ada
         playSilence 1500
         playFile /opt/RRFRaptor/sounds/qso_ok.wav
         if {$RRFRaptor == "RRF"} {
-          playFile /etc/spotnik/Srrf.wav      
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Srrf.wav      
         } elseif {$RRFRaptor == "FON"} {
-          playFile /etc/spotnik/Sfon.wav    
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sfon.wav    
         } elseif {$RRFRaptor == "TECHNIQUE"} {
-          playFile /etc/spotnik/Stec.wav    
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Stec.wav    
         } elseif {$RRFRaptor == "INTERNATIONAL"} {
-          playFile /etc/spotnik/Sint.wav    
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sint.wav    
         } elseif {$RRFRaptor == "LOCAL"} {
-          playFile /etc/spotnik/Sloc.wav    
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sloc.wav    
         } elseif {$RRFRaptor == "BAVARDAGE"} {
-          playFile /etc/spotnik/Sbav.wav    
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sbav.wav    
         }  
       }
     }

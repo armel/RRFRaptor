@@ -14,13 +14,14 @@ version = '1.5.2'
 # Variables par defaut
 
 sleep = 60                      # Durée en secondes avant QSY
+parking = False                 # Retour sur le salon par default, en phase de scan
+
 scan = False                    # Mode scan
 debug = False                   # Mode debug
-parking = True                  # Retour sur le salon par default, en phase de scan
 
 current_room = ''               # Salon courant
 
-default_room = 'TECHNIQUE'      # Salon par defaut si le RRFRaptor est perdu...
+base_room = 'RRF'      # Salon de base si le RRFRaptor est perdu...
 active_room  = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL']    # Liste des salons actifs (ajoutez le 'FON' si vous le souhaitez) 
 passive_room = ['PERROQUET', 'REGIONAL', 'EXPERIMENTAL', 'FREEDV', 'NUMERIQUE', 'ECHOLINK', 'ADMIN']   # Liste des salons passifs...
 active_room += passive_room
