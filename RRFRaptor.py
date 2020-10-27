@@ -69,6 +69,8 @@ def main(argv):
 
         # Log des parametres au demarrage
         
+        now = datetime.datetime.now()
+        
         print(now.strftime('%H:%M:%S') + ' - Start RRFRaptor...')
         print('           version    = ' + s.version)
         print('           scan       = ' + s.scan)
