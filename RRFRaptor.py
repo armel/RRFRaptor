@@ -70,14 +70,14 @@ def main(argv):
         # Log des parametres au demarrage
         
         now = datetime.datetime.now()
-        
+
         print(now.strftime('%H:%M:%S') + ' - Start RRFRaptor...')
-        print('           version    = ' + s.version)
-        print('           scan       = ' + s.scan)
-        print('           scan_sleep = ' + s.scan_sleep)
-        print('           park       = ' + s.park)
-        print('           park_sleep = ' + s.park_sleep)
-        print('           debug      = ' + s.debug)
+        print('           -> version    = ' + s.version)
+        print('           -> scan       = ' + str(s.scan))
+        print('           -> scan_sleep = ' + s.scan_sleep)
+        print('           -> park       = ' + str(s.park))
+        print('           -> park_sleep = ' + s.park_sleep)
+        print('           -> debug      = ' + s.debug)
 
         while(True):
             # Lecture du salon courant
