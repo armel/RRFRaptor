@@ -111,7 +111,7 @@ def main(argv):
                         print(now.strftime('%H:%M:%S') + ' - Standby sur ' + s.room_current + ' depuis ' + str(int(s2 - s1)) + ' secondes')
                     else:
                         if s.scan is False: # Attention, on réutilise ici la variable s.scan mais ne pas la confondre avec l'option --scan
-                            print(now.strftime('%H:%M:%S') + ' - Standby sur ' + s.room_current + ' (reset scan_sleep a 0)')
+                            print(now.strftime('%H:%M:%S') + ' - Standby sur ' + s.room_current + ' (reset scan_sleep)')
                     s.scan = True
 
             else: # Sinon on ne fait rien sur le perroquet
