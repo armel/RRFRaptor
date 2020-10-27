@@ -24,7 +24,9 @@ def usage():
     print()
     print('Parametrages:')
     print() 
-    print('  --sleep            nombre      Nombre de minutes avant scanning (1 minute par défaut)')
+    print('  --scan_sleep       nombre      Nombre de secondes avant scanning (60 secondes par défaut)')
+    print('  --park             booléen     Mode parking [True, False (défaut)]')
+    print('  --park_sleep       nombre      Nombre de secondes avant parking (60 secondes par défaut)')
     print('  --scan             booléen     Mode scan [True, False (défaut)]')
     print('  --debug            booléen     Mode debug [True, False (défaut)]')
     print()
@@ -36,7 +38,7 @@ def read_log():
 
     # Requete HTTP vers le flux json du salon produit par le RRFTracker 
     try:
-        r = requests.get(s.room[s.current_room]['url'], verify=False, timeout=10)
+        r = requests.get(s.room[s.room_current]['url'], verify=False, timeout=10)
     except requests.exceptions.ConnectionError as errc:
         print(('Error Connecting:', errc))
     except requests.exceptions.Timeout as errt:
@@ -51,15 +53,15 @@ def read_log():
 
     if rrf_data != '': # Si le flux est valide
         # On récupère le TOT du salon en court
-        current_tot = rrf_data['abstract'][0]['TOT']
-        s.room[s.current_room]['tot'] = current_tot
+        tot_current = rrf_data['abstract'][0]['TOT']
+        s.room[s.room_current]['tot'] = tot_current
 
-        if current_tot != 0: # Si le TOT tourne encore
-            s.room[s.current_room]['last'] = time.time()
+        if tot_current != 0: # Si le TOT tourne encore
+            s.room[s.room_current]['last'] = time.time()
         else: # Sinon, on commence à regarder ailleurs
             try:
                 for data in rrf_data['elsewhere'][6]:
-                    if data in s.active_room and data not in s.passive_room:
+                    if data in s.room_active and data not in s.room_passive:
                         tmp = rrf_data['elsewhere'][6][data]
                         if tmp != 0:
                             s.room[data]['tot'] = tmp
@@ -77,25 +79,25 @@ def read_log():
     return True
 
 # Gestion des QSY
-def qsy(new_room = ''):
+def qsy(room_new = ''):
     cmd = ''
-    old_room = s.current_room
+    room_old = s.room_current
 
-    if new_room != '': # Si une room est passée en argument
-        cmd = '/etc/spotnik/restart.' + new_room[:3].lower()
+    if room_new != '': # Si une room est passée en argument
+        cmd = '/etc/spotnik/restart.' + room_new[:3].lower()
     else: # Sinon
-        for data in s.active_room:
-            if data != s.current_room:
+        for data in s.room_active:
+            if data != s.room_current:
                 if s.room[data]['tot'] >= 3:
-                    s.current_room = data
-                    s.room[s.current_room]['last'] = time.time()
+                    s.room_current = data
+                    s.room[s.room_current]['last'] = time.time()
                     cmd = '/etc/spotnik/restart.' + data[:3].lower()
                     break
 
     # Si une commande est en attente... on la joue !
     if cmd != '':
         now = datetime.datetime.now()
-        print(now.strftime('%H:%M:%S') + ' - Execute ' + cmd + '(' + old_room + ' -> ' + s.current_room + ')')
+        print(now.strftime('%H:%M:%S') + ' - Execute ' + cmd + '(' + room_old + ' -> ' + s.room_current + ')')
         sys.stdout.flush()
         os.system(cmd)
         time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
@@ -106,7 +108,7 @@ def qsy(new_room = ''):
 
 # Gestion du scan simple
 def scan():
-    for data in s.active_room:
+    for data in s.room_active:
         if s.room[data]['tot'] >= 3:
             return data
             break
@@ -114,26 +116,26 @@ def scan():
 
 # Detection salon
 def where_is():
-    detect_room = ''
+    room_detect = ''
     with open('/etc/spotnik/network', 'r') as content_file:
         content = content_file.read()
     content = content.strip()
 
     for r in s.room:
         if s.room[r]['label'] == content:
-            detect_room = r
+            room_detect = r
 
     # QSY sur le salon par defaut si perdu...
-    if detect_room not in s.active_room:
-        s.current_room = s.base_room
-        qsy(s.current_room)
-        s.room[s.current_room]['last'] = time.time()
-    elif detect_room != s.current_room: # Si changement de salon...
+    if room_detect not in s.room_active:
+        s.room_current = s.room_base
+        qsy(s.room_current)
+        s.room[s.room_current]['last'] = time.time()
+    elif room_detect != s.room_current: # Si changement de salon...
         if s.scan is False:
             now = datetime.datetime.now()
-            print(now.strftime('%H:%M:%S') + ' - QSY manuel (' + s.current_room + ' -> ' + detect_room + ')')
+            print(now.strftime('%H:%M:%S') + ' - QSY manuel (' + s.room_current + ' -> ' + room_detect + ')')
             sys.stdout.flush()
-        s.current_room = detect_room
-        s.room[s.current_room]['last'] = time.time()
+        s.room_current = room_detect
+        s.room[s.room_current]['last'] = time.time()
             
     return True

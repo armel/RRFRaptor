@@ -101,45 +101,58 @@ Sinon, vous pouvez également utiliser le code DTMF __201__.
 
 # Paramétrages fins
 
-## Changer la temporisation, par défaut
+## Changer la valeur de la temporisation avant scan
 
-Lorsqu'un QSO se termine, le RRFRaptor patiente pendant une certaine durée, avant de débuter la recherche de QSO sur les autres salons. Par défaut, cette temporisation est de _60_ secondes. Mais il est évidemment possible de la changer. 
+> `scan_sleep = 60` (ligne 16)
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `sleep` (ligne 16) en indiquant une durée exprimée en secondes.
+Lorsqu'un QSO se termine, le RRFRaptor patiente pendant une certaine durée, avant de débuter la recherche de QSO sur les autres salons. C'est évidement sa fonction première. Par défaut, cette temporisation est de _60_ secondes. Mais il est évidemment possible de la changer. 
 
-## Changer le salon de base, par défaut
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `scan_sleep` (ligne 16) en indiquant une durée exprimée en secondes.
+
+## Changer le salon de base
+
+> `room_base = 'RRF'` (ligne 20)
 
 Quant le RRFRaptor est activé, le Spotnik a la possibilité d'aller sur l'ensemble des salons _actifs_ et _passifs_ (voir point ci dessus). Mais si un OM force un QSY (via commande DTMF ou autres moyens) sur un salon ne faisant pas partie de ces 2 listes, le RRFRaptor vous enverra vers le salon de base. Par défaut, ce salon de base est _RRF_. Mais il est évidemment possible de le changer. 
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `base_room` (ligne 24) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL ou FON.
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `room_base` (ligne 20) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL ou FON.
 
 >
 Exemple pratique. Si vous souhaitez suivre l'ensemble des salons _actifs_ mais exclure le salon RRF et autoriser l'utilisation du PERROQUET, voici la configuration permettant de le faire en choisissant le salon TECHNIQUE comme salon de base :
 
 ```
-base_room = 'TECHNIQUE'     # Salon de base si le RRFRaptor est perdu...
-active_room  = ['TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']    # Liste des salons actifs
-passive_room = ['PERROQUET']   # Liste des salons passifs...
+room_base = 'TECHNIQUE'     # Salon de base si le RRFRaptor est perdu...
+room_active  = ['TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']    # Liste des salons actifs
+room_passive = ['PERROQUET']   # Liste des salons passifs...
 ```
 
-## Changer la stratégie de _parking_ par défaut
+## Changer la stratégie de _parking_
 
-Lorsqu'un QSO se termine, le RRFRaptor patiente pendant une certaine durée avant de débuter la recherche de QSO sur les autres salons. Par défaut, il reste sur la salon courant. Mais il est possible de lui demander de retourner préventivement sur le salon de base.
+> `park = False` (ligne 17)
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `parking` (ligne 17) en indiquant `True`, si vous souhaitez retourner préventivement sur le salon de base.
+> `park_sleep = 60` (ligne 18)
+
+Lorsqu'un QSO se termine, le RRFRaptor patiente pendant une certaine durée avant de débuter la recherche de QSO sur les autres salons. __Par défaut, il reste sur la salon courant__. Mais il est possible de lui demander de retourner préventivement sur le salon de base (voir point précédent).
+
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `park` (ligne 17) en indiquant `True`, si vous souhaitez retourner préventivement sur le salon de base.
+
+En complément, toujours par défaut, la temporisation avant QSY sur le salon de base est de _60_ secondes. Mais il est évidemment possible de la changer. 
+
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `park_sleep` (ligne 18) en indiquant une durée exprimée en secondes.
+
 
 ## Ne pas prendre en compte certains salons
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `active_room` (ligne 24) qui liste les salons _actifs_ que vous souhaitez surveiller. Idem avec la variable `passive_room` (ligne 25) pour les salons _passifs_.
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `room_active` (ligne 21) qui liste les salons _actifs_ que vous souhaitez surveiller. Idem avec la variable `room_passive` (ligne 22) pour les salons _passifs_.
 
 À noter qu'il existe 2 types de salons : 
 
-- Les salons _actifs_ (ligne 24) : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL et FON
-- Les salons _passifs_ (ligne 25) : PERROQUET, REGIONAL, EXPERIMENTAL, FREEDV, NUMERIQUE, ECHOLINK et ADMIN
+- Les salons _actifs_ (ligne 21) : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL et FON
+- Les salons _passifs_ (ligne 22) : PERROQUET, REGIONAL, EXPERIMENTAL, FREEDV, NUMERIQUE, ECHOLINK et ADMIN
 
 Seuls les salons _actifs_ font l'objet d'une surveillance par le RRFRaptor. La liste des salons _passifs_ permet uniquement d'autoriser un QSY __manuel__ (via commandes DTMF ou autres) sur ces salons, même si le RRFRaptor est enclenché. Dans ce cas, le `timersalon.sh` prendra en charge le QSY avec retour sur le salon RRF en l'absence d'activité pendant 6 minutes (valeur par défaut).
 
-Enfin, retenez que si vous forcez un QSY vers un salon __non référencé__ dans la liste des salons _actifs_ ou des salons _passifs_, le RRFRaptor vous enverra vers le salon RRF (par défaut, voir points ci dessous).
+Enfin, retenez que si vous forcez un QSY vers un salon __non référencé__ dans la liste des salons _actifs_ ou des salons _passifs_, le RRFRaptor vous enverra vers le salon de base (RRF par défaut)
 
 ## Lancer le RRFRaptor au démarrage du Spotnik
 
