@@ -71,7 +71,7 @@ def main(argv):
         
         now = datetime.datetime.now()
 
-        print(now.strftime('%H:%M:%S') + ' - Start RRFRaptor...')
+        print(now.strftime('%H:%M:%S') + ' - Initialisation RRFRaptor...')
         print('           -> version    = ' + s.version)
         print('           -> scan       = ' + str(s.scan))
         print('           -> scan_sleep = ' + str(s.scan_sleep))

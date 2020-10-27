@@ -97,7 +97,7 @@ def qsy(room_new = ''):
     # Si une commande est en attente... on la joue !
     if cmd != '':
         now = datetime.datetime.now()
-        print(now.strftime('%H:%M:%S') + ' - Execute ' + cmd + '(' + room_old + ' -> ' + s.room_current + ')')
+        print(now.strftime('%H:%M:%S') + ' - Execute ' + cmd + ' (' + room_old + ' -> ' + s.room_current + ')')
         sys.stdout.flush()
         os.system(cmd)
         time.sleep(5)   # Petite temporisation avant de killer le timersalon éventuel
