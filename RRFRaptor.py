@@ -112,8 +112,7 @@ def main(argv):
                     else:
                         if s.scan is False: # Attention, on réutilise ici la variable s.scan mais ne pas la confondre avec l'option --scan
                             print(now.strftime('%H:%M:%S') + ' - Standby sur ' + s.room_current + '(reset temporisation)'
-
-                    s.scan = True # Attention, on réutilise ici la variable s.scan mais ne pas la confondre avec l'option --scan
+                        s.scan = True
 
             else: # Sinon on ne fait rien sur le perroquet
                 if s.debug is True:
