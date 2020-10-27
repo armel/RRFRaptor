@@ -74,10 +74,10 @@ def main(argv):
         print(now.strftime('%H:%M:%S') + ' - Start RRFRaptor...')
         print('           -> version    = ' + s.version)
         print('           -> scan       = ' + str(s.scan))
-        print('           -> scan_sleep = ' + s.scan_sleep)
+        print('           -> scan_sleep = ' + str(s.scan_sleep))
         print('           -> park       = ' + str(s.park))
-        print('           -> park_sleep = ' + s.park_sleep)
-        print('           -> debug      = ' + s.debug)
+        print('           -> park_sleep = ' + str(s.park_sleep))
+        print('           -> debug      = ' + str(s.debug))
 
         while(True):
             # Lecture du salon courant
