@@ -14,8 +14,8 @@ version = '1.5.3'
 # Variables par defaut
 
 scan_sleep = 60                 # Durée en secondes avant scanning
-park = True                     # Retour sur le salon par default, en phase de scan
-park_sleep = 30                 # Durée en secondes avant parking
+park = False                    # Retour sur le salon par default, en phase de scan
+park_sleep = 300                # Durée en secondes avant parking
 
 room_base = 'RRF'               # Salon de base si le RRFRaptor est perdu...
 room_active  = ['RRF', 'TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']    # Liste des salons actifs

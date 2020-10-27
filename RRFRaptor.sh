@@ -20,7 +20,7 @@ case "$1" in
         echo "Starting RRFRaptor"
         search="python3 ${PATH_SCRIPT}"
         pkill -f "${search}"
-        nohup python3 $PATH_SCRIPT --scan False --debug True > $PATH_LOG/RRFRaptor.log 2>&1 &
+        nohup python3 $PATH_SCRIPT --scan False --debug False > $PATH_LOG/RRFRaptor.log 2>&1 &
         echo 'set RRFRaptor "ON"' > /tmp/RRFRaptor_status.tcl
         echo "202#"> /tmp/dtmf_uhf
         echo "202#"> /tmp/dtmf_vhf

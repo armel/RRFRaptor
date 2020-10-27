@@ -130,7 +130,7 @@ room_passive = ['PERROQUET']   # Liste des salons passifs...
 
 > `park = False` (ligne 17)
 
-> `park_sleep = 60` (ligne 18)
+> `park_sleep = 300` (ligne 18)
 
 Lorsqu'un QSO se termine, le RRFRaptor patiente pendant une certaine durée avant de débuter la recherche de QSO sur les autres salons. __Par défaut, il reste sur la salon courant__. Mais il est possible de lui demander de retourner préventivement sur le salon de base (voir point précédent).
 
