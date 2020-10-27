@@ -98,8 +98,7 @@ def main(argv):
                         s.room_current = s.room_base
                         l.qsy(s.room_current)
                         s.room[s.room_current]['last'] = s1
-                        if s.debug is True:
-                            print(now.strftime('%H:%M:%S') + ' - Parking sur ' + s.room_current + '...')
+                        print(now.strftime('%H:%M:%S') + ' - Parking sur ' + s.room_current + '...')
 
                 # Gestion du scan
                 if (s2 - s1) > s.scan_sleep: # Si la temporisation atteinte, on scan
