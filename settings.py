@@ -24,7 +24,7 @@ room_passive = ['PERROQUET', 'REGIONAL', 'EXPERIMENTAL', 'FREEDV', 'NUMERIQUE', 
 # Autres variables (ne pas modifier si vous ne savez pas ce que vous faites...)
 
 scan = False                    # Mode scan
-debug = True                    # Mode debug
+debug = False                   # Mode debug
 room_current = ''               # Salon courant
 room_active += room_passive     # Don't tread on me ;)
 
