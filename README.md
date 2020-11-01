@@ -136,7 +136,7 @@ Lorsqu'un QSO se termine, le RRFRaptor patiente pendant une certaine durée avan
 
 Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `park` (ligne 17) en indiquant `True`, si vous souhaitez retourner préventivement sur le salon de base.
 
-En complément, toujours par défaut, la temporisation avant QSY sur le salon de base est de _60_ secondes. Mais il est évidemment possible de la changer. 
+En complément, toujours par défaut, la temporisation avant QSY sur le salon de base est de _300_ secondes. Mais il est évidemment possible de la changer. 
 
 Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `park_sleep` (ligne 18) en indiquant une durée exprimée en secondes.
 
