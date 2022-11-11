@@ -19,15 +19,13 @@ Le RRFRaptor analyse le trafic sur le réseau [RRF](https://f5nlg.wordpress.com/
 
 
 # Principe de fonctionnement
-Une fois le RRFRaptor lancé, tant qu'il y a de l'activité sur le salon sur lequel vous êtes, rien ne se passe. Le RRFRaptor reste en sommeil.
+Une fois le RRFRaptor lancé, tant qu'il y a de l'activité sur le salon sur lequel vous êtes, rien ne se passe. Le RRFRaptor reste en sommeil.
 
 Si l'activité retombe, au bout d'une certaine temporisation paramétrable, le RRFRaptor va s'activer et commencer à analyser le trafic sur l'ensemble du réseau RRF à la recherche de QSO sur les autres salons.
 
 Si le trafic reprend entre temps sur le salon sur lequel vous étiez, évidemment, la temporisation redémarre à zéro et le RRFRaptor retombe en sommeil.
 
 Par contre, si le trafic ne reprend pas et que le RRFRaptor détecte de l'activité sur un autre salon, alors il va automatiquement faire basculer votre Spotnik sur celui ci.
-
-> Par défaut, le FON n'est pas pris en charge. Mais vous pouvez l'ajouter à la liste des salons à surveiller. Voir ligne 24 du fichier `settings.py`.
 
 # Installation
 
@@ -115,14 +113,14 @@ Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la varia
 
 Quant le RRFRaptor est activé, le Spotnik a la possibilité d'aller sur l'ensemble des salons _actifs_ et _passifs_ (voir point ci dessus). Mais si un OM force un QSY (via commande DTMF ou autres moyens) sur un salon ne faisant pas partie de ces 2 listes, le RRFRaptor vous enverra vers le salon de base. Par défaut, ce salon de base est _RRF_. Mais il est évidemment possible de le changer. 
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `room_base` (ligne 20) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL ou FON.
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `room_base` (ligne 20) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, FON, TECHNIQUE, INTERNATIONAL, BAVARDAGE, LOCAL ou EXPERIMENTAL.
 
 >
 Exemple pratique. Si vous souhaitez suivre l'ensemble des salons _actifs_ mais exclure le salon RRF et autoriser l'utilisation du PERROQUET, voici la configuration permettant de le faire en choisissant le salon TECHNIQUE comme salon de base :
 
 ```
 room_base = 'TECHNIQUE'     # Salon de base si le RRFRaptor est perdu...
-room_active  = ['TECHNIQUE', 'LOCAL', 'BAVARDAGE', 'INTERNATIONAL', 'FON']    # Liste des salons actifs
+room_active  = ['FON', 'TECHNIQUE', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'EXPERIMENTAL']    # Liste des salons actifs
 room_passive = ['PERROQUET']   # Liste des salons passifs...
 ```
 
@@ -147,8 +145,8 @@ Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la varia
 
 À noter qu'il existe 2 types de salons : 
 
-- Les salons _actifs_ (ligne 21) : RRF, TECHNIQUE, LOCAL, BAVARDAGE, INTERNATIONAL et FON
-- Les salons _passifs_ (ligne 22) : PERROQUET, REGIONAL, EXPERIMENTAL, FREEDV, NUMERIQUE, ECHOLINK et ADMIN
+- Les salons _actifs_ (ligne 21) : RRF, FON, TECHNIQUE, INTERNATIONAL, BAVARDAGE, LOCAL et EXPERIMENTAL
+- Les salons _passifs_ (ligne 22) : PERROQUET, REGIONAL, FREEDV, NUMERIQUE, ECHOLINK et ADMIN
 
 Seuls les salons _actifs_ font l'objet d'une surveillance par le RRFRaptor. La liste des salons _passifs_ permet uniquement d'autoriser un QSY __manuel__ (via commandes DTMF ou autres) sur ces salons, même si le RRFRaptor est enclenché. Dans ce cas, le `timersalon.sh` prendra en charge le QSY avec retour sur le salon RRF en l'absence d'activité pendant 6 minutes (valeur par défaut).
 
@@ -233,11 +231,13 @@ Si vous le souhaitez, vous pouvez modifier les codes DTMF par défaut et les ada
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Stec.wav    
         } elseif {$RRFRaptor == "INTERNATIONAL"} {
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sint.wav    
-        } elseif {$RRFRaptor == "LOCAL"} {
-          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sloc.wav    
         } elseif {$RRFRaptor == "BAVARDAGE"} {
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sbav.wav    
-        }  
+        } elseif {$RRFRaptor == "LOCAL"} {
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sloc.wav    
+        } elseif {$RRFRaptor == "EXPERIMENTAL"} {
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sexp.wav    
+        }   
       }
     }
     return 1

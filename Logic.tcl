@@ -616,11 +616,11 @@ proc dtmf_cmd_received {cmd} {
     return 1
   }
 
-# 102 salon Sat
+# 102 salon Experimental
   if {$cmd == "102"} {
     puts "Executing external command"
     playMsg "Core" "online"
-    exec nohup /etc/spotnik/restart.sat &
+    exec nohup /etc/spotnik/restart.exp &
     return 1
   }
 
@@ -687,11 +687,13 @@ proc dtmf_cmd_received {cmd} {
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Stec.wav    
         } elseif {$RRFRaptor == "INTERNATIONAL"} {
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sint.wav    
-        } elseif {$RRFRaptor == "LOCAL"} {
-          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sloc.wav    
         } elseif {$RRFRaptor == "BAVARDAGE"} {
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sbav.wav    
-        }  
+        } elseif {$RRFRaptor == "LOCAL"} {
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sloc.wav    
+        } elseif {$RRFRaptor == "EXPERIMENTAL"} {
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sexp.wav    
+        }
       }
     }
     return 1
