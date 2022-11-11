@@ -693,6 +693,8 @@ proc dtmf_cmd_received {cmd} {
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sloc.wav    
         } elseif {$RRFRaptor == "EXPERIMENTAL"} {
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sexp.wav    
+        } elseif {$RRFRaptor == "REGIONAL"} {
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sreg.wav    
         }
       }
     }
