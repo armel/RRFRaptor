@@ -18,8 +18,8 @@ park = True                     # Retour sur le salon par default, en phase de s
 park_sleep = 300                # Durée en secondes avant parking
 
 room_base = 'REGIONAL'               # Salon de base si le RRFRaptor est perdu...
-room_active  = ['RRF', 'FON', 'TECHNIQUE', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'EXPERIMENTAL', 'REGIONAL']    # Liste des salons actifs
-room_passive = ['PERROQUET', 'FREEDV', 'NUMERIQUE', 'ECHOLINK', 'ADMIN']   # Liste des salons passifs...
+room_active  = ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'EXPERIMENTAL', 'REGIONAL']    # Liste des salons actifs
+room_passive = ['PERROQUET', 'FON', 'FREEDV', 'NUMERIQUE', 'ECHOLINK', 'ADMIN']   # Liste des salons passifs...
 
 # Autres variables (ne pas modifier si vous ne savez pas ce que vous faites...)
 
