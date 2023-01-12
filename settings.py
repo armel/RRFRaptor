@@ -9,7 +9,7 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.5.4'
+version = '1.5.5'
 
 # Variables par defaut
 
@@ -17,8 +17,8 @@ scan_sleep = 60                 # Durée en secondes avant scanning
 park = True                     # Retour sur le salon par default, en phase de scan
 park_sleep = 300                # Durée en secondes avant parking
 
-room_base = 'REGIONAL'               # Salon de base si le RRFRaptor est perdu...
-room_active  = ['RRF', 'FON', 'TECHNIQUE', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'EXPERIMENTAL', 'REGIONAL']    # Liste des salons actifs
+room_base = 'IDF'               # Salon de base si le RRFRaptor est perdu...
+room_active  = ['RRF', 'FON', 'TECHNIQUE', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'EXPERIMENTAL', 'IDF']    # Liste des salons actifs
 room_passive = ['PERROQUET', 'FREEDV', 'NUMERIQUE', 'ECHOLINK', 'ADMIN']   # Liste des salons passifs...
 
 # Autres variables (ne pas modifier si vous ne savez pas ce que vous faites...)
@@ -71,8 +71,8 @@ room = {
         'last': '',
         'label': 'exp'
     }, 
-    'REGIONAL': { 
-        'url': 'http://rrf.globalis-dev.com:8080/RRFTracker/REGIONAL-today/rrf_tiny.json',
+    'IDF': { 
+        'url': 'http://rrf.globalis-dev.com:8080/RRFTracker/IDF-today/rrf_tiny.json',
         'tot': 0,
         'last': '',
         'label': 'reg'
