@@ -9,7 +9,7 @@ Learn more about RRF on https://f5nlg.wordpress.com
 
 # Version
 
-version = '1.5.5'
+version = '1.5.6'
 
 # Variables par defaut
 
@@ -19,7 +19,7 @@ park_sleep = 300                # Durée en secondes avant parking
 
 room_base = 'IDF'               # Salon de base si le RRFRaptor est perdu...
 room_active  = ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'EXPERIMENTAL', 'IDF']    # Liste des salons actifs
-room_passive = ['PERROQUET', 'FON', 'FREEDV', 'NUMERIQUE', 'ECHOLINK', 'ADMIN']   # Liste des salons passifs...
+room_passive = ['PERROQUET', 'FON', 'FREEDV', 'NUMERIQUE', 'ECHOLINK', 'ADMIN', 'REGIONAL']   # Liste des salons passifs...
 
 # Autres variables (ne pas modifier si vous ne savez pas ce que vous faites...)
 
@@ -82,6 +82,12 @@ room = {
         'tot': 0,
         'last': '',
         'label': 'default'
+    },
+    'REGIONAL': {           # Salon passif 
+        'url': '',
+        'tot': 0,
+        'last': '',
+        'label': 'reg'
     },
     'FREEDV': {             # Salon passif
         'url': '',
