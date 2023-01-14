@@ -113,14 +113,14 @@ Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la varia
 
 Quant le RRFRaptor est activé, le Spotnik a la possibilité d'aller sur l'ensemble des salons _actifs_ et _passifs_ (voir point ci dessus). Mais si un OM force un QSY (via commande DTMF ou autres moyens) sur un salon ne faisant pas partie de ces 2 listes, le RRFRaptor vous enverra vers le salon de base. Par défaut, ce salon de base est _RRF_. Mais il est évidemment possible de le changer. 
 
-Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `room_base` (ligne 20) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, FON, TECHNIQUE, INTERNATIONAL, BAVARDAGE, LOCAL ou EXPERIMENTAL.
+Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la variable `room_base` (ligne 20) en indiquant un salon faisant partie de la listes des salons _actifs_ : RRF, FON, TECHNIQUE, INTERNATIONAL, BAVARDAGE, LOCAL, EXPERIMENTAL et IDF.
 
 >
-Exemple pratique. Si vous souhaitez suivre l'ensemble des salons _actifs_ mais exclure le salon RRF et autoriser l'utilisation du PERROQUET, voici la configuration permettant de le faire en choisissant le salon TECHNIQUE comme salon de base :
+Exemple pratique. Si vous souhaitez suivre l'ensemble des salons _actifs_ mais exclure le salon RRF et autoriser l'utilisation du PERROQUET, voici la configuration permettant de le faire en choisissant le salon IDF comme salon de base :
 
 ```
-room_base = 'TECHNIQUE'     # Salon de base si le RRFRaptor est perdu...
-room_active  = ['FON', 'TECHNIQUE', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'EXPERIMENTAL']    # Liste des salons actifs
+room_base = 'IDF'     # Salon de base si le RRFRaptor est perdu...
+room_active  = ['FON', 'TECHNIQUE', 'INTERNATIONAL', 'BAVARDAGE', 'LOCAL', 'EXPERIMENTAL', 'IDF']    # Liste des salons actifs
 room_passive = ['PERROQUET']   # Liste des salons passifs...
 ```
 
@@ -145,7 +145,7 @@ Vous pouvez éditer le fichier `/opt/RRFRaptor/settings.py` et modifier la varia
 
 À noter qu'il existe 2 types de salons : 
 
-- Les salons _actifs_ (ligne 21) : RRF, FON, TECHNIQUE, INTERNATIONAL, BAVARDAGE, LOCAL et EXPERIMENTAL
+- Les salons _actifs_ (ligne 21) : RRF, FON, TECHNIQUE, INTERNATIONAL, BAVARDAGE, LOCAL, EXPERIMENTAL et IDF
 - Les salons _passifs_ (ligne 22) : PERROQUET, REGIONAL, FREEDV, NUMERIQUE, ECHOLINK et ADMIN
 
 Seuls les salons _actifs_ font l'objet d'une surveillance par le RRFRaptor. La liste des salons _passifs_ permet uniquement d'autoriser un QSY __manuel__ (via commandes DTMF ou autres) sur ces salons, même si le RRFRaptor est enclenché. Dans ce cas, le `timersalon.sh` prendra en charge le QSY avec retour sur le salon RRF en l'absence d'activité pendant 6 minutes (valeur par défaut).
@@ -237,7 +237,9 @@ Si vous le souhaitez, vous pouvez modifier les codes DTMF par défaut et les ada
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sloc.wav    
         } elseif {$RRFRaptor == "EXPERIMENTAL"} {
           playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sexp.wav    
-        }   
+        } elseif {$RRFRaptor == "IDF"} {
+          playFile /usr/share/svxlink/sounds/fr_FR/RRF/Sidf.wav
+        }
       }
     }
     return 1
