@@ -29,6 +29,8 @@ Par contre, si le trafic ne reprend pas et que le RRFRaptor détecte de l'activi
 
 # Installation
 
+J'ai réalisé une [video](https://www.youtube.com/watch?v=bqmKqC76tbE) qui explique le paramétrage du RRFRaptor. Elle est complémentaire de cette documentation. 
+
 ## Installation du RRFRaptor
 
 Commencez par ouvrir une connexion SSH sur votre Spotnik.
